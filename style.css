@@ -1,0 +1,436 @@
+/* Estilos Base similares a tu biblioteca */
+body {
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+    background-color: #101822;
+    /* Azul oscuro Disney */
+    color: #ffffff;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* Header - Basado en tu .site-header */
+.site-header {
+    background-color: rgba(16, 24, 34, 0.95);
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-title {
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: 800;
+}
+
+.main-nav {
+    display: flex;
+    gap: 24px;
+}
+
+.main-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 1.2px;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: #fff;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #7C3AED;
+    transition: width 0.3s;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    margin: 30px 0 20px;
+    color: #cbd5e1;
+    font-weight: 600;
+}
+
+
+.accent {
+    color: #7C3AED;
+}
+
+/* Hero Section */
+/* Hero Section */
+.hero-banner {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    /* Quitamos el background-image del CSS porque ahora usamos el <img> en el HTML */
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+
+/* Oscurecimiento para que el texto se lea sobre la imagen */
+.hero-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #101822 0%, rgba(16, 24, 34, 0.4) 50%, rgba(16, 24, 34, 0.3) 100%);
+    z-index: 1;
+}
+
+.hero-poster {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-content {
+    width: 100%;
+    padding-bottom: 60px;
+    z-index: 2;
+    /* Mayor que el overlay (1) y la imagen (0) */
+    position: relative;
+}
+
+
+
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0 0 16px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #e2e8f0;
+    margin-bottom: 24px;
+    font-weight: 500;
+}
+
+.primary-button {
+    display: inline-block;
+    /* Soporte para <a> tags */
+    text-decoration: none;
+    /* Sin subrayado */
+    background-color: #7C3AED;
+    /* Purple accent */
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 12px;
+    /* Espacio entre botones */
+}
+
+.secondary-button {
+    display: inline-block;
+    /* Soporte para <a> tags */
+    text-decoration: none;
+    /* Sin subrayado */
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: #fff;
+    transform: translateY(-2px);
+}
+
+.primary-button:hover {
+    background-color: #6D28D9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+}
+
+
+/* Grid de Películas - Idéntico a tu .book-grid */
+/* Filtros */
+.filter-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: #fff;
+    color: #000;
+}
+
+/* Carrusel de Películas */
+.carousel-container {
+    position: relative;
+    padding: 0 40px;
+    /* Espacio para flechas */
+    margin-bottom: 40px;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.movie-card {
+    flex: 0 0 calc(20% - 16px);
+    /* 5 pelis por fila */
+    min-width: 150px;
+    background-color: #1a222e;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+/* Flechas del carrusel */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    height: 100%;
+    padding: 0 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-container:hover .carousel-btn {
+    opacity: 1;
+}
+
+.carousel-btn.prev {
+    left: 0;
+}
+
+.carousel-btn.next {
+    right: 0;
+}
+
+@media (max-width: 1100px) {
+    .movie-card {
+        flex: 0 0 calc(25% - 16px);
+    }
+}
+
+@media (max-width: 800px) {
+    .movie-card {
+        flex: 0 0 calc(33.333% - 16px);
+    }
+}
+
+@media (max-width: 500px) {
+    .movie-card {
+        flex: 0 0 calc(50% - 16px);
+    }
+}
+
+
+.movie-card {
+    background-color: #1a222e;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    border-color: #7C3AED;
+}
+
+.movie-poster {
+    width: 100%;
+    aspect-ratio: 2/3;
+    /* Proporción de poster de cine */
+    object-fit: cover;
+    display: block;
+}
+
+.movie-info {
+    padding: 12px;
+}
+
+/* Menú de Usuario */
+.user-menu {
+    position: relative;
+    margin-left: auto;
+    /* Empuja el menú a la derecha si es necesario */
+}
+
+.user-trigger {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.user-trigger:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-name {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.user-trigger:hover .user-avatar {
+    border-color: #7C3AED;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 180px;
+    background-color: #1a222e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px 0;
+    margin-top: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 100;
+}
+
+.user-menu:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px 20px;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(124, 58, 237, 0.2);
+    /* Tintado suave púrpura */
+    color: #fff;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 6px 0;
+}
+
+.text-danger:hover {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+/* Responsivo - Usando tus mismos cortes de pantalla */
+@media (max-width: 900px) {
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .movie-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Footer - Igual al de tu biblioteca */
+.site-footer {
+    background: #0b0e16;
+    color: #ffffff;
+    padding: 24px 0;
+    text-align: center;
+    margin-top: 40px;
+}

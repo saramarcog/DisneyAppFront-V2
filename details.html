@@ -1,330 +1,52 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="es">
+<html lang="es">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#7C3AED",
-                        "background-light": "#f5f7f8",
-                        "background-dark": "#101822",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-                },
-            },
-        }
-    </script>
-    <title>Disney+ Cinematic Movie Details</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles - Disney+ Clone</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-background-light dark:bg-background-dark font-display text-white">
-    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-        <!-- Top Navigation Bar -->
-        <header
-            class="fixed top-0 w-full z-50 flex items-center justify-between px-12 py-4 bg-gradient-to-b from-background-dark/80 to-transparent">
-            <div class="flex items-center gap-10">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 text-primary">
-                        <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd"
-                                d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z"
-                                fill="currentColor" fill-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <h1 class="text-2xl font-black tracking-tight">Disney<span class="text-primary">+</span></h1>
-                </div>
-                <nav class="hidden md:flex items-center gap-8">
-                    <a class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
-                        href="index.html">
-                        <span class="material-symbols-outlined text-[20px]">home</span> Inicio
-                    </a>
-                    <a class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
-                        href="search.html">
-                        <span class="material-symbols-outlined text-[20px]">search</span> Búsqueda
-                    </a>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <h1 class="site-title">Disney<span class="accent">+</span></h1>
+            <nav class="main-nav">
+                <a href="index.html">INICIO</a>
+                <a href="search.html">BÚSQUEDA</a>
+            </nav>
+        </div>
+    </header>
 
-                    <div class="relative">
-                        <button id="movies-menu-btn"
-                            class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors focus:outline-none">
-                            <span class="material-symbols-outlined text-[20px]">movie</span> Películas
-                            <span class="material-symbols-outlined text-[16px] transition-transform duration-200"
-                                id="movies-arrow">expand_more</span>
-                        </button>
-                        <!-- Dropdown Menu -->
-                        <div id="movies-dropdown"
-                            class="hidden absolute top-full left-0 mt-2 w-56 bg-[#0E1016] border border-white/10 rounded-lg shadow-[0_4px_30px_rgba(0,0,0,0.5)] z-50 overflow-hidden transform origin-top transition-all duration-200 opacity-0 scale-95 translate-y-[-10px]">
-                            <div class="py-2">
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Acción</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Aventura</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Animación</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Comedia</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Crimen</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Documental</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Drama</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Fantasía</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Terror</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Ciencia
-                                    Ficción</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <button id="series-menu-btn"
-                            class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors focus:outline-none">
-                            <span class="material-symbols-outlined text-[20px]">tv</span> Series
-                            <span class="material-symbols-outlined text-[16px] transition-transform duration-200"
-                                id="series-arrow">expand_more</span>
-                        </button>
-                        <!-- Dropdown Menu -->
-                        <div id="series-dropdown"
-                            class="hidden absolute top-full left-0 mt-2 w-56 bg-[#0E1016] border border-white/10 rounded-lg shadow-[0_4px_30px_rgba(0,0,0,0.5)] z-50 overflow-hidden transform origin-top transition-all duration-200 opacity-0 scale-95 translate-y-[-10px]">
-                            <div class="py-2">
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Acción
-                                    y Aventura</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Animación</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Comedia</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Documental</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Drama</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Infantil</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Ciencia
-                                    Ficción
-                                    y Fantasía</a>
-                                <a href="#"
-                                    class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Reality</a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            <div class="flex items-center gap-6">
-                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/50 shadow-[0_0_15px_rgba(124,58,237,0.3)]"
-                    data-alt="User profile avatar with a character"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDqoAWdY_cs3sgPcz6pc_p2z-JQoIfR-B7CY6N2IB_IfEgKUD70WLEWcewZNaH3fSlXtmuAJhr-Ys1Y2u6TowxgMoocBQte7sxstOqx0q6LgN0-FIyjRRlya1uVhctuW0Z99lwCewMFACb90qKNliGDMw9lSRKyMYEfNTKSQi8EpXfcWEVkvBJ80GH_rIW8L6b5YaxPaCs_6OjtCNbh8QAiX6BLMGfbwW5qcVYza0g_xhhuLC-UIIqe3y93HnEKYBkS-jFH5hncRNzM");'>
+    <main class="container">
+        <div class="movie-details" style="padding: 40px 0; display: flex; gap: 40px; flex-wrap: wrap;">
+            <img src="https://lumiere-a.akamaihd.net/v1/images/p_avatarthewayofwater_199_v2_1ac9b808.jpeg" alt="Poster"
+                style="width: 300px; border-radius: 12px; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
+            <div class="details-content" style="flex: 1; min-width: 300px;">
+                <h2 style="font-size: 3rem; margin-top: 0;">Avatar: El Sentido del Agua</h2>
+                <div class="meta" style="color: #ccc; margin-bottom: 20px;">
+                    <span>2022</span> • <span>3h 12m</span> • <span>Ciencia Ficción, Acción</span>
+                </div>
+                <p style="font-size: 1.1rem; line-height: 1.6; color: #e2e8f0;">
+                    Jake Sully vive con su nueva familia en el planeta Pandora. Cuando una amenaza conocida regresa,
+                    Jake debe trabajar con Neytiri y el ejército de la raza Na'vi para proteger su planeta.
+                </p>
+                <div class="actions" style="margin-top: 30px;">
+                    <button class="primary-button">VER AHORA</button>
+                    <button class="primary-button"
+                        style="background: rgba(255,255,255,0.1); margin-left: 10px;">TRÁILER</button>
                 </div>
             </div>
-        </header>
-        <!-- Hero Section with Cinematic Image -->
-        <main class="relative pt-16">
-            <div class="w-full h-[85vh] relative overflow-hidden">
-                <div class="absolute inset-0 bg-cover bg-center"
-                    data-alt="Epic cinematic movie still from Encanto featuring the magical Madrigal house"
-                    style='background-image: linear-gradient(to right, #101822 0%, rgba(16, 24, 34, 0.4) 40%, rgba(16, 24, 34, 0) 100%), linear-gradient(to top, #101822 5%, rgba(16, 24, 34, 0) 40%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB43QLS9O1o_-GGMCXRGPpEEKAQxqew1NEXLW7o40RCnCHBS38D5Dgv_wFSieNX6DYoHlBPiu7twvh-nh4oKh569jCgLJAaHeaEi0mOr0Q76Oz6viqdWEeqrhDnWko3CAa9s-cv7az1K_I04MuOLjTkJdk84fl51z6Kbcm9nVX6xcIA26-RBXpGjZypBNmPW1svJEf9oY_NjKx4qQJTB47bk60IaUr3eImTPo2DQ8oboqcfUk2Bd8DiZuyR11DWdS7LUKTQc4WdAP2x");'>
-                </div>
-                <!-- Movie Content Overlay -->
-                <div class="relative z-10 h-full max-w-[1440px] mx-auto px-20 flex flex-col justify-center">
-                    <div class="max-w-2xl">
-                        <!-- Movie Logo Area (Simulated with Headline) -->
-                        <h1 class="text-white tracking-tighter text-[72px] font-black leading-none drop-shadow-2xl">
-                            ENCANTO</h1>
-                        <!-- Meta Info -->
-                        <div class="flex items-center gap-3 text-white/80 text-lg font-medium py-6">
-                            <span class="bg-white/20 px-2 py-0.5 rounded text-sm font-bold">12+</span>
-                            <span>•</span>
-                            <span>2021</span>
-                            <span>•</span>
-                            <span>1h 42m</span>
-                            <span>•</span>
-                            <span>Fantasy, Musical, Animation</span>
-                        </div>
-                        <p class="text-white/90 text-xl leading-relaxed mb-8 max-w-xl">
-                            The Madrigals are an extraordinary family who live hidden in the mountains of Colombia in a
-                            charmed place called the Encanto. The magic of the Encanto has blessed every child in the
-                            family with a unique gift.
-                        </p>
-                        <!-- Action Buttons -->
-                        <div class="flex gap-4">
-                            <button
-                                class="flex min-w-[180px] cursor-pointer items-center justify-center gap-3 rounded-lg h-14 px-8 bg-white text-black text-lg font-bold hover:bg-white/90 transition-colors uppercase tracking-widest">
-                                <span class="material-symbols-outlined text-2xl fill-1">play_arrow</span>
-                                <span>Ver Ahora</span>
-                            </button>
-                            <button
-                                class="flex min-w-[180px] cursor-pointer items-center justify-center gap-3 rounded-lg h-14 px-8 bg-white/10 backdrop-blur-md text-white border border-white/20 text-lg font-bold hover:bg-white/20 transition-colors uppercase tracking-widest">
-                                <span class="material-symbols-outlined text-2xl">add</span>
-                                <span>Mi Lista</span>
-                            </button>
-                            <button
-                                class="flex items-center justify-center size-14 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 hover:bg-white/20 transition-colors">
-                                <span class="material-symbols-outlined text-2xl">group</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Tabs and Content Details -->
-            <div class="bg-background-dark px-20 -mt-10 relative z-20 pb-20">
-                <div class="border-b border-white/10 mb-8 flex gap-12">
-                    <button
-                        class="text-white text-lg font-bold py-4 border-b-4 border-white tracking-widest uppercase">Detalles</button>
-                    <button
-                        class="text-white/50 text-lg font-bold py-4 hover:text-white transition-colors tracking-widest uppercase">Sugerencias</button>
-                    <button
-                        class="text-white/50 text-lg font-bold py-4 hover:text-white transition-colors tracking-widest uppercase">Extras</button>
-                </div>
-                <div class="grid grid-cols-12 gap-12">
-                    <div class="col-span-8">
-                        <h3 class="text-2xl font-bold mb-4">Sobre esta película</h3>
-                        <p class="text-white/70 text-lg leading-relaxed">
-                            Mirabel Madrigal, the only member of her family without magical powers, discovers that the
-                            magic surrounding their home is in danger. She might be her family's last hope to save their
-                            extraordinary gift. Featuring original songs by Lin-Manuel Miranda, Encanto is a celebration
-                            of family and self-discovery.
-                        </p>
-                        <div class="mt-8 grid grid-cols-2 gap-8">
-                            <div>
-                                <h4 class="text-white/40 uppercase text-xs font-black tracking-widest mb-2">Director
-                                </h4>
-                                <p class="text-white text-lg font-medium">Jared Bush, Byron Howard</p>
-                            </div>
-                            <div>
-                                <h4 class="text-white/40 uppercase text-xs font-black tracking-widest mb-2">Reparto</h4>
-                                <p class="text-white text-lg font-medium leading-relaxed">Stephanie Beatriz, María
-                                    Cecilia Botero, John Leguizamo, Mauro Castillo</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-span-4 bg-white/5 p-6 rounded-xl border border-white/10">
-                        <h3 class="text-xl font-bold mb-4">Información Adicional</h3>
-                        <div class="space-y-4">
-                            <div class="flex justify-between border-b border-white/5 pb-2">
-                                <span class="text-white/50">Estudio</span>
-                                <span class="font-medium text-white/90">Walt Disney Animation Studios</span>
-                            </div>
-                            <div class="flex justify-between border-b border-white/5 pb-2">
-                                <span class="text-white/50">Audio</span>
-                                <span class="font-medium text-white/90">Español, Inglés, Portugués</span>
-                            </div>
-                            <div class="flex justify-between border-b border-white/5 pb-2">
-                                <span class="text-white/50">Subtítulos</span>
-                                <span class="font-medium text-white/90">Español, Inglés, +24 más</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Suggestions Section Preview -->
-                <div class="mt-16">
-                    <h3 class="text-2xl font-bold mb-6">Sugerencias</h3>
-                    <div class="grid grid-cols-6 gap-4">
-                        <div class="aspect-[2/3] bg-white/10 rounded-lg overflow-hidden relative group cursor-pointer border border-white/5"
-                            data-alt="Movie poster for Luca">
-                            <img alt="Movie Poster 1"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTp_HXosGFrQCnSKrg6Lq9tEZv-C3HIT_aVb-GnjZaXgJPWN3sEEiOGR8yHGZTqeVxlmElHClZYVYC_0gE4HhqzW7cJ8D91GqIZ_8xHEwfUINRrhO6dujCVDlpKhLj7TAvuUCV5u-DwvtKLv-f6lzNaoS6o4H7aowz1jYPsaLXpWmporFYpHcV7l0niGDJnF3JdphXVJQRK5fICfBSsZD45cqIpKo2DwgTkBYUZfz-gsu4ZyrU1YJ9sGEZWeja_216lqPUruWfaYeh" />
-                            <div
-                                class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                <span class="material-symbols-outlined text-4xl text-white">play_circle</span>
-                            </div>
-                        </div>
-                        <div class="aspect-[2/3] bg-white/10 rounded-lg overflow-hidden relative group cursor-pointer border border-white/5"
-                            data-alt="Movie poster for Raya and the Last Dragon">
-                            <img alt="Movie Poster 2"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKlTBlCd5Oe1YYh1NQa3Je6HkZ05dFUXwO83Xf77AyuImfsQeSF70hf6E_rjo4pSG7haI1yTgxNx_Ik0k8xR-tSd3FNR3ST_wnZfDCngKdWYHDuNVnE8tKPSO-gpY00nQyBoo7aWl7jNupw-ShecjVYcrx8xNd6he6mBt4yJIu9Lqzn-_pDJRUK-6wWyQFrXCcXKNF3fXZX19sbI6q2fTnwng3GU4ILDcRvUPNOlA5GEW79Cgx2M7LFeObtGWv8ZX_vYbiPv2r8rvk" />
-                            <div
-                                class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                <span class="material-symbols-outlined text-4xl text-white">play_circle</span>
-                            </div>
-                        </div>
-                        <div class="aspect-[2/3] bg-white/10 rounded-lg overflow-hidden relative group cursor-pointer border border-white/5"
-                            data-alt="Movie poster for Frozen II">
-                            <img alt="Movie Poster 3"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFI1t_uy1-ortOx7ONDzWt8FsTmjsYgj49STQkbKR-RzGK1morZPqQaF_qaUZmjkShiNo1WQnASa-DuxNeQGLlEXBURapLkxt9D6qMOs_Zw5foj3Ra4kQHu42zJ-KoJ0rt4OnJQvGw7OZn6SfG6lJB7GPkjkqq15n3o-fKNS-Q63vRwgZVG-lp36eouAcIi6-xFY0JlLXPDelzZV1JzKGp-yPQ3gWOIH7EO3tR83mra-bqdjLQmRvZrMnkklx63tAiJoEtZ1Wz94jU" />
-                            <div
-                                class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                <span class="material-symbols-outlined text-4xl text-white">play_circle</span>
-                            </div>
-                        </div>
-                        <div class="aspect-[2/3] bg-white/10 rounded-lg overflow-hidden relative group cursor-pointer border border-white/5"
-                            data-alt="Movie poster for Moana">
-                            <img alt="Movie Poster 4"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQv8T-Ygf8_mmXbDZTKqH2DklqsmS1o_FAc6EaQfhdilwt7cjOJ-pWN4vsUidewSSTJsD3gWnENcUfnfEP-SmOjdd5X7P-v4LgfLh7k5O-cNKIM2D7_OjI6tQL9lyrEFcJIS0LnuTb2Ye_hTmeRO4Ld63z30e5xuQZlgi4-KMpvO5VWzIFbKkc8XfeWqZuD3hZ4-VwarCujq7cRj1QirAqXYWxMYJdUeWOkP2JbticutaViQCgNaf2sV0fGxSxsx9IBJJQ0Lmt5U6a" />
-                            <div
-                                class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                <span class="material-symbols-outlined text-4xl text-white">play_circle</span>
-                            </div>
-                        </div>
-                        <div class="aspect-[2/3] bg-white/10 rounded-lg overflow-hidden relative group cursor-pointer border border-white/5"
-                            data-alt="Movie poster for Coco">
-                            <img alt="Movie Poster 5"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJrIcoF2p6Z5ZPFdPDTL6hBwSdBDHbG1H71Eqyrw8fyZr00mP1qlqPgcmRziYBr20qNAQqDDTrl1b8eH3IY8ogI1wb0qG_DKVSmaMgFLZANhEvuOQLKZ4ZCxpFbTazWePH9YIrdBv1Mzd8K_fG2liay34XAJRpcKArFcUSR1tEQYbTXGs76M7irj07xcI3pu0vxoidK2b-g2vK3-6e0DrVh7UzfcsF3AWyZhoAe9Uy9PJKgnR17fYzmNFHY1cubtvxzhjadIFYiw4L" />
-                            <div
-                                class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                <span class="material-symbols-outlined text-4xl text-white">play_circle</span>
-                            </div>
-                        </div>
-                        <div class="aspect-[2/3] bg-white/10 rounded-lg overflow-hidden relative group cursor-pointer border border-white/5"
-                            data-alt="Movie poster for Onward">
-                            <img alt="Movie Poster 6"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXHTctINcZLHHWHDTumkZgP7N0qP2Rz8qUBlp2grx9bNCrL_BlJoM-xa2uyqwIvivDBO-7xen626717xieRAw2lEyIyilVCbUMt4ur5Snxuie5mUrs76uX9h7QB0AFO7ydF1zgBvfrDJwrn-ndgsXIv_RutNXFqFUAMbID-QubUqSUtDYZ7tB9tBs0j0aNja7vjmTqJhLKywM-FUj6EtFJJHEIZrGbK_5F_dg0FdltkXQbFrNDA4Is8TVUUS6ghad0pNmbMAPO-nqe" />
-                            <div
-                                class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                <span class="material-symbols-outlined text-4xl text-white">play_circle</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <!-- Simple Footer -->
-        <footer class="w-full bg-background-dark/50 border-t border-white/10 py-10 px-20">
-            <div class="flex flex-col items-center gap-6">
-                <div class="size-10 text-white opacity-50">
-                    <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                        <path clip-rule="evenodd"
-                            d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z"
-                            fill="currentColor" fill-rule="evenodd"></path>
-                    </svg>
-                </div>
-                <div class="flex gap-8 text-white/40 text-sm font-medium">
-                    <a class="hover:text-white transition-colors" href="#">Política de Privacidad</a>
-                    <a class="hover:text-white transition-colors" href="#">Acuerdo de Suscripción</a>
-                    <a class="hover:text-white transition-colors" href="#">Ayuda</a>
-                    <a class="hover:text-white transition-colors" href="#">Dispositivos compatibles</a>
-                </div>
-                <p class="text-white/30 text-xs">© 2024 Disney and its related entities. All rights reserved.</p>
-            </div>
-        </footer>
-    </div>
-    <script src="index.js"></script>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Trabajo de Lenguaje de Marcas - Centro San Valero</p>
+            <p>SARA MARCO · Curso: 1SI</p>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -1,401 +1,94 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Disney+ Movie Detail Screen</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#7C3AED",
-                        "background-light": "#f5f6f8",
-                        "background-dark": "#101622",
-                    },
-                    fontFamily: {
-                        "display": ["Plus Jakarta Sans", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-                },
-            },
-        }
-    </script>
-    <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-
-        .hero-gradient {
-            background: linear-gradient(to right, rgba(16, 22, 34, 0.9) 0%, rgba(16, 22, 34, 0.4) 40%, rgba(16, 22, 34, 0) 60%),
-                linear-gradient(to top, rgba(16, 22, 34, 1) 0%, rgba(16, 22, 34, 0) 30%);
-        }
-
-        .glass-panel {
-            backdrop-filter: blur(8px);
-            background: rgba(40, 46, 57, 0.4);
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valero Dreams</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-background-light dark:bg-background-dark font-display text-white min-h-screen">
-    <!-- Top Navigation Bar -->
-    <header
-        class="fixed top-0 w-full z-50 flex items-center justify-between px-12 py-4 bg-gradient-to-b from-background-dark/80 to-transparent">
-        <div class="flex items-center gap-10">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 text-primary">
-                    <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                        <path clip-rule="evenodd"
-                            d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z"
-                            fill="currentColor" fill-rule="evenodd"></path>
-                    </svg>
-                </div>
-                <h1 class="text-2xl font-black tracking-tight">Disney<span class="text-primary">+</span></h1>
-            </div>
-            <nav class="hidden md:flex items-center gap-8">
-                <a class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
-                    href="index.html">
-                    <span class="material-symbols-outlined text-[20px]">home</span> Inicio
-                </a>
-                <a class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
-                    href="search.html">
-                    <span class="material-symbols-outlined text-[20px]">search</span> Búsqueda
-                </a>
-
-                <div class="relative">
-                    <button id="movies-menu-btn"
-                        class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors focus:outline-none">
-                        <span class="material-symbols-outlined text-[20px]">movie</span> Películas
-                        <span class="material-symbols-outlined text-[16px] transition-transform duration-200"
-                            id="movies-arrow">expand_more</span>
-                    </button>
-                    <!-- Dropdown Menu -->
-                    <div id="movies-dropdown"
-                        class="hidden absolute top-full left-0 mt-2 w-56 bg-[#0E1016] border border-white/10 rounded-lg shadow-[0_4px_30px_rgba(0,0,0,0.5)] z-50 overflow-hidden transform origin-top transition-all duration-200 opacity-0 scale-95 translate-y-[-10px]">
-                        <div class="py-2">
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Acción</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Aventura</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Animación</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Comedia</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Crimen</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Documental</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Drama</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Fantasía</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Terror</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Ciencia
-                                Ficción</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative">
-                    <button id="series-menu-btn"
-                        class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors focus:outline-none">
-                        <span class="material-symbols-outlined text-[20px]">tv</span> Series
-                        <span class="material-symbols-outlined text-[16px] transition-transform duration-200"
-                            id="series-arrow">expand_more</span>
-                    </button>
-                    <!-- Dropdown Menu -->
-                    <div id="series-dropdown"
-                        class="hidden absolute top-full left-0 mt-2 w-56 bg-[#0E1016] border border-white/10 rounded-lg shadow-[0_4px_30px_rgba(0,0,0,0.5)] z-50 overflow-hidden transform origin-top transition-all duration-200 opacity-0 scale-95 translate-y-[-10px]">
-                        <div class="py-2">
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Acción
-                                y Aventura</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Animación</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Comedia</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Documental</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Drama</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Infantil</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Ciencia
-                                Ficción
-                                y Fantasía</a>
-                            <a href="#"
-                                class="block px-5 py-3 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:pl-7 transition-all duration-200">Reality</a>
-                        </div>
-                    </div>
-                </div>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <h1 class="site-title">Valero Dreams <span class="accent">+</span></h1>
+            <nav class="main-nav">
+                <a href="index.html">INICIO</a>
+                <a href="search.html">BÚSQUEDA</a>
             </nav>
-        </div>
-        <div class="flex items-center gap-6">
-            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/50 shadow-[0_0_15px_rgba(124,58,237,0.3)]"
-                data-alt="User profile avatar with a character"
-                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDqoAWdY_cs3sgPcz6pc_p2z-JQoIfR-B7CY6N2IB_IfEgKUD70WLEWcewZNaH3fSlXtmuAJhr-Ys1Y2u6TowxgMoocBQte7sxstOqx0q6LgN0-FIyjRRlya1uVhctuW0Z99lwCewMFACb90qKNliGDMw9lSRKyMYEfNTKSQi8EpXfcWEVkvBJ80GH_rIW8L6b5YaxPaCs_6OjtCNbh8QAiX6BLMGfbwW5qcVYza0g_xhhuLC-UIIqe3y93HnEKYBkS-jFH5hncRNzM");'>
+            <div class="user-menu">
+                <div class="user-trigger">
+                    <span class="user-name">Hola Maite! </span>
+                    <img src="https://ui-avatars.com/api/?name=Maite&background=7C3AED&color=fff" alt="Avatar"
+                        class="user-avatar">
+                </div>
+                <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item">Configuración</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item text-danger">Cerrar sesión</a>
+                </div>
             </div>
         </div>
     </header>
-    <!-- Main Content -->
-    <main class="relative">
-        <!-- Hero Section -->
-        <section class="relative h-[90vh] w-full">
-            <div class="absolute inset-0 bg-cover bg-center"
-                data-alt="Avatar The Way of Water cinematic background scene"
-                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDcqOdGUbHqC3GA-eatYpDKdo2VBkzJsqcXzcB2Tv7cGUFa_z3OWOoUXMZPNFz_JFy4G80BtdfztzbSnDHHcizxCkuPedm08Vlih-jGJjBQfIA1ZRSkwfD1tZAFFNKCMjvT5vpGY2JEEpjVJTWsGpsocASwQz8Qu9dZHCCPAxr-YzXE93kvqDXuY-Bf3C9YfdbrHgldv8Gssy5A7xUlJPUOC4tUajJ8StVcUElTOMRbcDHj3tNjQcq4C4OeX-3EIg8Y6tFyWBhJxAN');">
-                <div class="absolute inset-0 hero-gradient"></div>
-            </div>
-            <div class="relative z-10 h-full flex flex-col justify-center px-16 max-w-[800px]">
-                <!-- Movie Logo / Title -->
-                <div class="mb-6">
-                    <h1 class="text-7xl font-black uppercase tracking-tighter leading-none drop-shadow-2xl">
-                        Avatar<br />
-                        <span class="text-primary text-4xl tracking-widest">El Sentido del Agua</span>
-                    </h1>
-                </div>
-                <!-- Rating and Meta -->
-                <div class="flex items-center gap-6 mb-4">
-                    <div class="flex flex-col">
-                        <div class="flex gap-0.5 text-primary">
-                            <span class="material-symbols-outlined !text-[20px]">star</span>
-                            <span class="material-symbols-outlined !text-[20px]">star</span>
-                            <span class="material-symbols-outlined !text-[20px]">star</span>
-                            <span class="material-symbols-outlined !text-[20px]">star</span>
-                            <span class="material-symbols-outlined !text-[20px] opacity-50">star</span>
-                        </div>
-                        <p class="text-xs font-bold text-white/60 mt-1">4.8 • 15.4k reseñas</p>
-                    </div>
-                    <div class="h-8 w-[1px] bg-white/20"></div>
-                    <p class="text-white/80 text-sm font-medium leading-normal">2022 • 3h 12m • Acción, Ciencia Ficción,
-                        Aventura • 12+</p>
-                </div>
-                <!-- Action Buttons -->
-                <div class="flex gap-4 mb-8">
-                    <button
-                        class="flex min-w-[180px] cursor-pointer items-center justify-center gap-3 overflow-hidden rounded-lg h-14 px-8 bg-primary text-white text-lg font-bold hover:bg-primary/90 transition-all transform hover:scale-105 shadow-lg shadow-primary/25">
-                        <span class="material-symbols-outlined">play_arrow</span>
-                        <span class="truncate uppercase tracking-widest">Ver Ahora</span>
-                    </button>
-                    <button
-                        class="flex min-w-[180px] cursor-pointer items-center justify-center gap-3 overflow-hidden rounded-lg h-14 px-8 glass-panel border border-white/20 text-white text-lg font-bold hover:bg-white/10 transition-all">
-                        <span class="material-symbols-outlined">movie</span>
-                        <span class="truncate uppercase tracking-widest">Tráiler</span>
-                    </button>
-                    <button
-                        class="flex size-14 cursor-pointer items-center justify-center overflow-hidden rounded-full glass-panel border border-white/20 text-white hover:bg-white/10 transition-all">
-                        <span class="material-symbols-outlined">add</span>
-                    </button>
-                </div>
-                <!-- Synopsis -->
-                <p class="text-lg text-white/80 leading-relaxed max-w-2xl">
-                    Jake Sully vive con su nueva familia formada en la luna extrasolar Pandora. Una vez que una amenaza
-                    familiar
-                    regresa para terminar lo que se inició anteriormente, Jake debe trabajar con Neytiri y el ejército
-                    de
-                    la raza Na'vi para proteger su hogar.
-                </p>
-            </div>
-        </section>
-        <!-- Tabbed Content Section -->
-        <section class="px-16 -mt-10 pb-20 relative z-20">
-            <!-- Tabs -->
-            <div class="flex gap-10 border-b border-white/10 mb-8">
-                <button
-                    class="pb-4 text-sm font-bold uppercase tracking-[0.2em] border-b-4 border-primary text-white">Sugerencias</button>
-                <button
-                    class="pb-4 text-sm font-bold uppercase tracking-[0.2em] border-b-4 border-transparent text-white/60 hover:text-white transition-colors">Extras</button>
-                <button
-                    class="pb-4 text-sm font-bold uppercase tracking-[0.2em] border-b-4 border-transparent text-white/60 hover:text-white transition-colors">Detalles</button>
-            </div>
-            <!-- Suggested Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                <!-- Movie Card -->
-                <a href="details.html"
-                    class="block group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] border-2 border-transparent hover:border-primary/50">
-                    <div class="absolute inset-0 bg-cover bg-center" data-alt="Star Wars The Mandalorian poster"
-                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDxA_MxButKVl5-XVNa-el21re1lc6kHwbSRheQuqNVoDnpW82iIe7SYcjkGRHDEj_6PB8CJGohjNCSUtuHSzAjH-NjeShqI7Po9WOAlHJDTVooG_3OR7jOjvUb3HAnBkNxlykIndgxXIR0zaeW6twjH2A7aS46w-B7_d6jB2E_YNRt-1h9LTY6D7dJQu6-4YWWhc8Vw6M4apDwYxucjmhDRG77ZQw942SUMHR8nxCIV62OnNyqd3Rna0j6NnJs8TWz9EIvV-egYJOl');">
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                        <p class="font-bold text-sm">Star Wars: The Mandalorian</p>
-                    </div>
-                </a>
-                <!-- Card 2 -->
-                <a href="details.html"
-                    class="block group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] border-2 border-transparent hover:border-primary/50">
-                    <div class="absolute inset-0 bg-cover bg-center" data-alt="Guardians of the Galaxy poster"
-                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDTXIcLNvU18YFFM8zYUGSaNheUrhijnvFQnjKb0GvIxdjvdHqSH88cS8frdm4ZCDxFjXVtQHYbLioPstu8MA3O5BUTsT8dlfxONrnsrKM-C_JLPvzfLJ03VAvbk2HPXHOC7Xjy8HMl-R2GWI4onrUSV6CLXtyb9OocQBfGN5A7d6_PGcKM8ApgnKZ7cQcpmjbGh33f5BzSIcRWaf0MevW7EUSK0EY-_QjojVe0Gc8wdfzUOdOFKWGty7og2kjtGkysbhGQejJHDYb8');">
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                        <p class="font-bold text-sm">Guardians of the Galaxy Vol 3</p>
-                    </div>
-                </a>
-                <!-- Card 3 -->
-                <a href="details.html"
-                    class="block group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] border-2 border-transparent hover:border-primary/50">
-                    <div class="absolute inset-0 bg-cover bg-center" data-alt="Avengers Endgame cinematic art"
-                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5TR4Zg1agZvKPLTpTmdO76158UJNYiF3dI7iFcglil4DAc-r4MHCWD70GIBP0YPCFBkILbXCE7kudUvpfKmdOFd4M5i6l6mPU9GJSR-esLdGACVwgHPapmu9vjZ-4jHbaxRhhw57Hx2FOrDhirrH8uqOm6WfDi7sWp2g9FLyv2lFAef1jvjaTYY-5lQinaaAh_kMqG5i0pNi_gbIjgKMQ1R9f6QSD0zEs9lMlGGpT4Ds_HcUBpBRhUoM-8uch3T7H5pZqC7_cZm84');">
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                        <p class="font-bold text-sm">Avengers: Endgame</p>
-                    </div>
-                </a>
-                <!-- Card 4 -->
-                <a href="details.html"
-                    class="block group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] border-2 border-transparent hover:border-primary/50">
-                    <div class="absolute inset-0 bg-cover bg-center" data-alt="Interstellar space scene"
-                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCbZRF5RSjqtD7H8UtaudxPBIbnzcvwqwqkfM_Ocs21Ahxlwp_LJCYVt7OVJfRAa_bROnnUMbHhkmWzfGpjCUbOtFwhHqMXJCqD2I9CKBS4lTnk8-B5ePqkQT2UBEHXn7ZxdP9AELfpwvAAn5ud4-UyWhvQwjxJOkYxGo3EQG-yJas1xNsgA-f68QdIHhlKzhjOViYMHqXB1nof98JpEVXHn33MmrxFnapy36PTetNeMCywB4N7kJ2_5oW6sKdO9aKeoEQHsWQoZDqo');">
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                        <p class="font-bold text-sm">Interstellar</p>
-                    </div>
-                </a>
-                <!-- Card 5 -->
-                <a href="details.html"
-                    class="block group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] border-2 border-transparent hover:border-primary/50">
-                    <div class="absolute inset-0 bg-cover bg-center" data-alt="Black Panther Wakanda art"
-                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_arYNm1kv-hb8UH7KzjBvnTDY_bWivk0A5BfsWxuK8lKy54QnWw1ByOmnRU67kExBrixqy6wCCEFXoThri9ualorqqYnBjgTeMdyRPu--G2n1elWZx2AjULlOptj4BdvAXTNYZRW4oGPMwrnDrDwbpUv-qSOSbTifl0qAMP8a1A1ZBO9ZTwwwRinrEEWYcnSi44Wd2ZmpSJPe90Qtw8v84ZTsM-UWQBfbCUmVrTtne0wjnVPWbDYklZ_AGsGIKU_-BmxjU2UNCtlE');">
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                        <p class="font-bold text-sm">Black Panther: Wakanda Forever</p>
-                    </div>
-                </a>
-                <!-- Card 6 -->
-                <a href="details.html"
-                    class="block group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] border-2 border-transparent hover:border-primary/50">
-                    <div class="absolute inset-0 bg-cover bg-center" data-alt="Doctor Strange Multiverse poster"
-                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBgpm0AUDxMbEj_IRlCe_R-9IdWpdh6m9z-rL1hrZ0sPzroTYwXCLwHZntsroiQfgu1IdSCYYhTWItTL28Gv0VPntk7o1Por1f3QhLhIag6pSh-pQznZpevvwHeG2eAQahSM85-SX1kgtZ5Q4FRUialwF0qDffGYhWwh9eD2q5FGg2flFVoXnmul3Uo4YlkqICA86XDupLkAzNgBPwf9REJHi4th7CvIccBL2tmv17U9wO-pNq4uf49YxQFCSbQPZ3AwC8f5qUP9Rcs');">
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                        <p class="font-bold text-sm">Doctor Strange: Multiverse</p>
-                    </div>
-                </a>
-            </div>
-            <!-- Extras Preview Section -->
-            <div class="mt-16">
-                <h3 class="text-xl font-bold mb-6 text-white/90">Extras y Detrás de Escenas</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div
-                        class="group relative aspect-video rounded-xl overflow-hidden cursor-pointer border-2 border-white/5 hover:border-primary/50 transition-all">
-                        <div class="absolute inset-0 bg-cover bg-center"
-                            data-alt="Behind the scenes filming ocean scene"
-                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUbA1US3s4AlXwjy6QLsEZpl8EwC0ETJTEBMBpDjFnT98bu5i4b2a8OGfBl0A0WQ7eyI3u82SxH503tsC-N8cz_Q_hWaknjjgJ3KaFV4O0Oa0_Ze7xsE5oQFkRSlBejfUEe4_KEBFXeixsYbasfz_XxGi1uKUNRpdA-wQK0XrjtKJ7fTvdqhDd-cRvKoxzXKC2x8A7dFv85d5rJ5QVpGJWGgoJmuiEZ9H34eB1v5omUdTW_35sUSA0dpH5K7tprMjsFkHZiMTVb17D');">
-                        </div>
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                            <div
-                                class="size-12 rounded-full bg-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined">play_arrow</span>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black to-transparent w-full">
-                            <p class="text-sm font-bold">La Actuación Subacuática</p>
-                            <p class="text-xs text-white/60">04:32</p>
-                        </div>
-                    </div>
-                    <div
-                        class="group relative aspect-video rounded-xl overflow-hidden cursor-pointer border-2 border-white/5 hover:border-primary/50 transition-all">
-                        <div class="absolute inset-0 bg-cover bg-center" data-alt="Digital effects comparison shot"
-                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuASKp-bDkj_BIsgBsmxcL29QSB7r17BPJS2qPwb0jAUoWcqRheUa0htlzqr4ZZtsbDprQ3b1o8P50xDxAZzGGX2zkqYLHXTTEkSrdibEvND_4LjGjIjCdH4TzrM6Da_4eAesCbgV7b1lsm8T_EGjSDntNjsciYO5aHAG_aKOsyjndsXQ0n_y6OqTcHg4wB7YCTZfzjKqDwtNsQ7EsbGxkqVjlZHAFOYfw5WbPSXe8NidmwDwJ2RpPdACePJydmGAfKp39izMN-CtjEP');">
-                        </div>
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                            <div
-                                class="size-12 rounded-full bg-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined">play_arrow</span>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black to-transparent w-full">
-                            <p class="text-sm font-bold">Creando la Flora de Pandora</p>
-                            <p class="text-xs text-white/60">12:15</p>
-                        </div>
-                    </div>
-                    <div
-                        class="group relative aspect-video rounded-xl overflow-hidden cursor-pointer border-2 border-white/5 hover:border-primary/50 transition-all">
-                        <div class="absolute inset-0 bg-cover bg-center" data-alt="James Cameron directing actors"
-                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDV4ZA0seF_B3frPcywbucb1oqtEuZ9t9wqyNofj-IFcmzODWC6RgKgX7fIOLmboxw-6m-HzUbPKtq9YI61wjior-AVjVmbnTglqGsm1stuEdkViVcSlZTpWmmsoa9Ul1kNndzqrz85FtZBEODKC3hn3xgno4R_pfamlWOvgRbPT9dBYrPW6_YBhZaqBH9_cix7o9OctOLyi0KgTngJcHaw6beAbMfJ0uRwTuq093ZF7COhOkn28pCx6dy0YGFDCdv5UYP4M6fzVGQe');">
-                        </div>
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                            <div
-                                class="size-12 rounded-full bg-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined">play_arrow</span>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black to-transparent w-full">
-                            <p class="text-sm font-bold">Comentarios del Director</p>
-                            <p class="text-xs text-white/60">08:45</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Details Section Preview -->
-            <div class="mt-20 pt-10 border-t border-white/10 grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div>
-                    <h3 class="text-2xl font-black mb-6 uppercase tracking-widest">Avatar: El Sentido del Agua</h3>
-                    <div class="space-y-4 text-white/70">
-                        <div class="flex justify-between border-b border-white/5 pb-2">
-                            <span class="font-bold text-white/40 uppercase text-xs tracking-widest">Fecha de
-                                Estreno</span>
-                            <span class="text-sm">16 de diciembre de 2022</span>
-                        </div>
-                        <div class="flex justify-between border-b border-white/5 pb-2">
-                            <span class="font-bold text-white/40 uppercase text-xs tracking-widest">Director</span>
-                            <span class="text-sm">James Cameron</span>
-                        </div>
-                        <div class="flex justify-between border-b border-white/5 pb-2">
-                            <span class="font-bold text-white/40 uppercase text-xs tracking-widest">Estudio</span>
-                            <span class="text-sm">20th Century Studios</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col justify-end">
-                    <div class="glass-panel p-6 rounded-xl border border-white/10">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="text-primary" data-icon="Info" data-size="24px">
-                                <span class="material-symbols-outlined !text-4xl">info</span>
-                            </div>
-                            <h4 class="font-bold text-lg">Guía Parental</h4>
-                        </div>
-                        <p class="text-sm text-white/60 leading-relaxed">
-                            Incluye secuencias de acción de ciencia ficción intensa, violencia y lenguaje fuerte breve.
-                            Recomendado para audiencias de 12 años en adelante.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <!-- Footer -->
-    <footer class="bg-[#0b0e16] px-16 py-12 text-center text-white/40 text-xs border-t border-white/5">
-        <div class="flex justify-center gap-6 mb-6">
-            <a class="hover:text-white transition-colors" href="#">Política de Privacidad</a>
-            <a class="hover:text-white transition-colors" href="#">Términos de Uso</a>
-            <a class="hover:text-white transition-colors" href="#">Ayuda</a>
-            <a class="hover:text-white transition-colors" href="#">Dispositivos Compatibles</a>
-            <a class="hover:text-white transition-colors" href="#">Acuerdo de Suscriptor</a>
+
+    <section class="hero-banner">
+        <img src="https://lumiere-a.akamaihd.net/v1/images/avatar-twow-videobg02_fae5d62e.jpeg?region=0,0,1920,1080&width=768"
+            alt="Poster" class="hero-poster">
+        <div class="container hero-content">
+            <h2 class="hero-title">Avatar: El Sentido del Agua</h2>
+            <p class="hero-subtitle">2022 • 3h 12m • Acción, Ciencia Ficción</p>
+            <a href="details.html" class="primary-button">VER AHORA</a>
+            <a href="https://youtu.be/FSyWAxUg3Go?si=S0w_DmpemO_nxgFc" class="secondary-button"
+                target="_blank">TRÁILER</a>
         </div>
-        <p>© 2023 Disney y sus entidades relacionadas. Todos los derechos reservados.</p>
+    </section>
+
+    <main class="container">
+
+        <!-- Filtros -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-genre="all">Todos</button>
+            <button class="filter-btn" data-genre="Ciencia Ficción">Ciencia Ficción</button>
+            <button class="filter-btn" data-genre="Acción">Acción</button>
+            <button class="filter-btn" data-genre="Animación">Animación</button>
+            <button class="filter-btn" data-genre="Fantasía">Fantasía</button>
+            <button class="filter-btn" data-genre="Comedia">Comedia</button>
+        </div>
+
+        <!-- Sección Recomendados -->
+        <h2 class="section-title">Recomendados para ti</h2>
+        <section class="carousel-container" id="recommended-carousel">
+            <button class="carousel-btn prev" onclick="scrollCarousel('recommended-track', -1)">&#10094;</button>
+            <div class="carousel-track-container">
+                <div class="carousel-track" id="recommended-track">
+                    <!-- JS inyectará películas aquí -->
+                </div>
+            </div>
+            <button class="carousel-btn next" onclick="scrollCarousel('recommended-track', 1)">&#10095;</button>
+        </section>
+
+        <!-- Sección Novedades -->
+        <h2 class="section-title">Novedades</h2>
+        <section class="carousel-container" id="new-carousel">
+            <button class="carousel-btn prev" onclick="scrollCarousel('new-track', -1)">&#10094;</button>
+            <div class="carousel-track-container">
+                <div class="carousel-track" id="new-track">
+                    <!-- JS inyectará películas aquí -->
+                </div>
+            </div>
+            <button class="carousel-btn next" onclick="scrollCarousel('new-track', 1)">&#10095;</button>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Centro San Valero</p>
+            <p>SARA MARCO, SERGIO GOMEZ , AMALIO OSA · Curso: 1SI</p>
+        </div>
     </footer>
-    <script src="index.js"></script>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

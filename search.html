@@ -1,262 +1,44 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="es">
+<html lang="es">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Disney+ - Buscar y Explorar</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#7C3AED",
-                        "background-light": "#f5f7f8",
-                        "background-dark": "#101822",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro"]
-                    },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-                },
-            },
-        }
-    </script>
-    <style>
-        body {
-            font-family: "Be Vietnam Pro", sans-serif;
-        }
-
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda - Disney+ Clone</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-background-light dark:bg-background-dark min-h-screen text-white">
-    <div class="layout-container flex h-full grow flex-col">
-        <!-- Top Navigation Bar -->
-        <header
-            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-10 py-3 bg-background-light dark:bg-background-dark sticky top-0 z-50">
-            <div class="flex items-center gap-8">
-                <div class="flex items-center gap-2 text-white">
-                    <div class="size-8">
-                        <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd"
-                                d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z"
-                                fill="currentColor" fill-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <h2 class="text-white text-xl font-bold leading-tight tracking-tight">Disney+</h2>
-                </div>
-                <nav class="hidden lg:flex items-center gap-6">
-                    <a class="text-white/70 hover:text-white text-xs font-bold leading-normal tracking-widest transition-colors"
-                        href="index.html">INICIO</a>
-                    <a class="text-white text-xs font-bold leading-normal tracking-widest border-b-2 border-white pb-1"
-                        href="#">BÚSQUEDA</a>
-                    <a class="text-white/70 hover:text-white text-xs font-bold leading-normal tracking-widest transition-colors"
-                        href="#">MI LISTA</a>
-                    <a class="text-white/70 hover:text-white text-xs font-bold leading-normal tracking-widest transition-colors"
-                        href="#">ORIGINALES</a>
-                    <a class="text-white/70 hover:text-white text-xs font-bold leading-normal tracking-widest transition-colors"
-                        href="#">PELÍCULAS</a>
-                    <a class="text-white/70 hover:text-white text-xs font-bold leading-normal tracking-widest transition-colors"
-                        href="#">SERIES</a>
-                </nav>
-            </div>
-            <div class="flex items-center gap-4">
-                <button
-                    class="flex items-center justify-center rounded-full size-10 bg-white/5 hover:bg-white/10 text-white transition-colors">
-                    <span class="material-symbols-outlined">download</span>
-                </button>
-                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white/20"
-                    data-alt="User profile avatar icon"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXjg3xvlGI1Tviw95RTAaFz9xjh6momFrXXc633tdx6qq-Khg65wjSuZCdNVoq_Tm3QPYUaaS8Mr7FY4MK2vPK7TSz3qSAd4z1calqIGV40eimqpNx1tIBty6sbCEUXwu29nlUtBy3d97nLex6u3blhgwAuvMs39IVcHlOx_BVdYfJXp35pggtYWApqT7eU627DnJhDUy8b3mOH3PNjY-eyBB0Q2MbTNweMTEVdn0U8xWcQu3vga0pagauFqSmkWfDvEeD6iYwn7pj");'>
-                </div>
-            </div>
-        </header>
-        <main class="flex flex-1 justify-center py-8">
-            <div class="layout-content-container flex flex-col w-full max-w-[1200px] px-6 lg:px-10">
-                <!-- Search Bar -->
-                <div class="py-6">
-                    <label class="flex flex-col w-full">
-                        <div
-                            class="flex w-full items-stretch rounded-lg h-16 bg-[#282f39] border-b-2 border-transparent focus-within:border-primary transition-all">
-                            <div class="text-[#9ca9ba] flex items-center justify-center pl-6">
-                                <span class="material-symbols-outlined text-3xl">search</span>
-                            </div>
-                            <input
-                                class="form-input flex-1 border-none bg-transparent text-white focus:outline-0 focus:ring-0 h-full placeholder:text-[#9ca9ba] px-4 text-2xl font-medium leading-normal"
-                                placeholder="Películas, series o cortos" value="" />
-                        </div>
-                    </label>
-                </div>
-                <!-- Explore Section -->
-                <section>
-                    <h2 class="text-white/60 text-lg font-bold leading-tight tracking-wide px-2 pb-4 uppercase">Explorar
-                    </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 p-2">
-                        <div class="group relative overflow-hidden rounded-xl aspect-video cursor-pointer border-2 border-transparent hover:border-white/50 hover:scale-105 transition-all duration-300"
-                            data-alt="Disney Originals themed background"
-                            style='background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDVAMhIQRRxwOE6Jt-spoIIqR5Jxh5RCe2z8iGMHSzs48aSFnP9h4U65nrCIpBZQCrGs-LOl0HqVIzBnmf5vlmsUZ984gydHmvB-OADr9gX9pEiIsQugDBrGaGuDNhdU5Sx0Gi8YWjI7tzZPfAj822gKt27Y8m0Xz4p3GyR4yqMsd0NQ0vhOGgXzWQTTtjo34i379diVrvCRdYoZcedGTcEphPlWjWLdWz3oUJeQqocbYc3zhRCf__8m0K6-uO5WPUOB4YbXUPaWgE2"); background-size: cover;'>
-                            <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors">
-                            </div>
-                            <div class="absolute bottom-4 left-4">
-                                <p class="text-white text-lg font-bold">Originales</p>
-                            </div>
-                        </div>
-                        <div class="group relative overflow-hidden rounded-xl aspect-video cursor-pointer border-2 border-transparent hover:border-white/50 hover:scale-105 transition-all duration-300"
-                            data-alt="Movies category vibrant background"
-                            style='background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBsvZIT6omZVLz9K6HXi3ixMaDLC76O2MQAXqlSeoZpPFgvN3mW36vXQKc64gaoajAfWcnV8kORy5LhDF2xEj9mMkpwQqKoWrvVPPS9AianHIHzkP1GZJBJkv9kkCSH_b6V0YzXPbZhfHiiXwUVay4_DZIEtkOZLfrd_MAIgDdwYTH68NOaPXqUHlaXZlPelyVoZVK0Kirg5AUPMydNqp1o0UN8V41g_7FC4FxWhhDstJC-TDYPDuUN36D_yTxvlpE7vwIcwf1-2wT7"); background-size: cover;'>
-                            <div class="absolute inset-0 bg-red-600/20 group-hover:bg-transparent transition-colors">
-                            </div>
-                            <div class="absolute bottom-4 left-4">
-                                <p class="text-white text-lg font-bold">Películas</p>
-                            </div>
-                        </div>
-                        <div class="group relative overflow-hidden rounded-xl aspect-video cursor-pointer border-2 border-transparent hover:border-white/50 hover:scale-105 transition-all duration-300"
-                            data-alt="Series category cinematic background"
-                            style='background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDQ5g0juKY40A8xQ-xdHsa38HXlYTQW5suaaRAyEzxyn1pUDp3Cob5qofVeplX9BmRBM8ca1ggxN3BSl3Ju2XpbdDIo_LXhzyxePXeOma4vXPvVbFAB8bhbKzc_oSLzeDaR4QOiKqyLaLysmq4MWoAHu2yhmQsJ5_ITTJXanaDgRuo5UbIrhIfwn_Tecgf71SvLbuT_bFoCPVJgNfrGFkWFTASWpzoxrrNksaPOAmVac9bPT13rpPt-xErN3Rw_1NZcaoZWk1QiHLRM"); background-size: cover;'>
-                            <div class="absolute inset-0 bg-green-600/20 group-hover:bg-transparent transition-colors">
-                            </div>
-                            <div class="absolute bottom-4 left-4">
-                                <p class="text-white text-lg font-bold">Series</p>
-                            </div>
-                        </div>
-                        <div class="group relative overflow-hidden rounded-xl aspect-video cursor-pointer border-2 border-transparent hover:border-white/50 hover:scale-105 transition-all duration-300"
-                            data-alt="Action genre dynamic background"
-                            style='background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAu4YFmrRFpTif6TcWTjIHeYAGGk7RVhRmsK96YiqrPPhTmOb60UT3f2mzj4LUNbXZoxXjHqNXJsJI1eTJjrNF8X8C307bX621TuTvGQYUUVEXxRRSD0gqn8vZOgPLhUeBhml99vlGKqZBJxVZk9551UakB8_ndK6ZHIMW8Oh6r2M76ooBz2EyAUA3SxVF8M4gXwC3gv4KdJEC7EN51PG6YonRbAN01Sj3Eo_yww6jTnrqqxNZRK9v04A-fg-t_9Wv598Av5oc2GE-d"); background-size: cover;'>
-                            <div class="absolute inset-0 bg-orange-600/20 group-hover:bg-transparent transition-colors">
-                            </div>
-                            <div class="absolute bottom-4 left-4">
-                                <p class="text-white text-lg font-bold">Acción</p>
-                            </div>
-                        </div>
-                        <div class="group relative overflow-hidden rounded-xl aspect-video cursor-pointer border-2 border-transparent hover:border-white/50 hover:scale-105 transition-all duration-300"
-                            data-alt="Disney Junior colorful background"
-                            style='background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCKodLE2XL-KFqSwbVGGHjbm0wdsaS9hJqG9RfOd2Ul60oA97yJzlh9Y-f--nK4cgX0_6-QQmAp43EfxTMw9QO6SAZ74vZPggnUl3HyGOXl8psnzo11007d5hF-G-Abmb9ZyqW5x8XoBD9RuC4S6yukvHpcZXTJFp_YuwLPB3avEb19-6jUtjPsR_MMxfvQ_8WVDM4xDSLDf9Cw450ubJQVzZ5xcDKxSAXQD7k74x6mIJ1BZaxTkfkp0uHGwX7j7oVry0lFoapF0aeQ"); background-size: cover;'>
-                            <div class="absolute inset-0 bg-yellow-400/20 group-hover:bg-transparent transition-colors">
-                            </div>
-                            <div class="absolute bottom-4 left-4">
-                                <p class="text-white text-lg font-bold">Disney Junior</p>
-                            </div>
-                        </div>
-                        <div class="group relative overflow-hidden rounded-xl aspect-video cursor-pointer border-2 border-transparent hover:border-white/50 hover:scale-105 transition-all duration-300"
-                            data-alt="Nature documentary scenic background"
-                            style='background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCMH2NWIROZJQCwWtBK1WD6xkOc2Hmc2BXnrjnAeTQ6uBp2-j0aWNlHdberP9JrX6h7qsh0QrvgkIU3Y7qq-A7DHVOBrBJ1rPS1TptA_LG-2pDyoSwoKRlA9WUM_92y8-GK_MfK0N51KyLtzkUmLvQEJ1uZ2kUceeLo1dEovIuFBfOZwQa5j5g46sXqzlKdLl_xEYKo9-dquZP1GCSx_ggNmZiyfJfBnlIFOVmrPfzhNVKSc_LrWSa2tmkJDa_LQu-PFv9AFpsf1QVa"); background-size: cover;'>
-                            <div class="absolute inset-0 bg-teal-600/20 group-hover:bg-transparent transition-colors">
-                            </div>
-                            <div class="absolute bottom-4 left-4">
-                                <p class="text-white text-lg font-bold">Naturaleza</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- Trending / Search Results (Mock) Section -->
-                <section class="mt-12">
-                    <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-2 pb-5">Resultados
-                        destacados</h2>
-                    <div
-                        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 px-2">
-                        <!-- Poster Card 1 -->
-                        <div class="group flex flex-col gap-2 cursor-pointer">
-                            <div class="relative aspect-[2/3] overflow-hidden rounded-lg border-2 border-transparent group-hover:border-white/80 group-hover:scale-105 transition-all duration-300 shadow-xl"
-                                data-alt="Star Wars movie poster artwork"
-                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbVZOKxfQRYzbpdUmGXzQt-7PVXMzBecwOvtxW1QfEbUVyokFUxu_9pVH9gAbtFM5rWXvtx62scT6-g0O9iYhHFFZSaB53TVR9v0VGmPdvYlEetu4fd_UJgw87kuAjz-p1vfWYrst_ZnG9WhLIkE9CFqUljaFArWHPvIY8kRIIGzmKSoHK_1pXwhogDiZjPo5L_2Dt0wNNCq2xnnRcSuyP1W8rI8OrrFci4kKBgJ7KbhHDyw0vATjxqzyX-eP2IgvybKsNAiI0xasp"); background-size: cover;'>
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                    <button
-                                        class="bg-white text-black rounded-full size-10 flex items-center justify-center">
-                                        <span class="material-symbols-outlined">play_arrow</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Poster Card 2 -->
-                        <div class="group flex flex-col gap-2 cursor-pointer">
-                            <div class="relative aspect-[2/3] overflow-hidden rounded-lg border-2 border-transparent group-hover:border-white/80 group-hover:scale-105 transition-all duration-300 shadow-xl"
-                                data-alt="Marvel cinematic universe movie poster"
-                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHCfJni534oezM93qG_SIYIC-cDYjHgH3Dn-KfNJUyEAfeMf5CYKNoKPX8g3AVq9KNxTdLAkTGt-iJLEPoqkDNG5kp40orqcooROG7_6dOeVBVT374NWocfarPsTfuXbncbZVSnUf7LyoEW0zo-EJZkynkll9zt-rI_iLMIwu7RC52Kg1Gg55tLv7vAEaEZI-WeG7e-oIB_1AdsY9xqRSxugT5n1LO-2yOhD6FkPHAPVaOtYWp3KpH4pDwLJWSzOnsTCuOQVyrqQ5J"); background-size: cover;'>
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                    <button
-                                        class="bg-white text-black rounded-full size-10 flex items-center justify-center">
-                                        <span class="material-symbols-outlined">play_arrow</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Poster Card 3 -->
-                        <div class="group flex flex-col gap-2 cursor-pointer">
-                            <div class="relative aspect-[2/3] overflow-hidden rounded-lg border-2 border-transparent group-hover:border-white/80 group-hover:scale-105 transition-all duration-300 shadow-xl"
-                                data-alt="Pixar animation movie poster"
-                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCGFSwU1HVARwOPdQ15MIj5lyDTxa2g0GSAlkDS7A59FbUvlZdCpxGh9scAPg1MDC2MRQyVn-V-PdN49tf78mG3Oe-6yjLpR4XY86FGq7xd7ebRi_aX1Bp1B6Tr9qGS9ZYLgE1N4rmIRi9bFc37Xc0mauClhbjx2Uo7IPF-5wtDxJTOUmCQFEv_J4CSO5mOQ8FSCVqYOXN8Esue93QpTcPeEremdBrRrw20gnqLj80ByeAEsS5_Gq-E45dtLNoJtAQgsqMgbOdepdNH"); background-size: cover;'>
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                    <button
-                                        class="bg-white text-black rounded-full size-10 flex items-center justify-center">
-                                        <span class="material-symbols-outlined">play_arrow</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Poster Card 4 -->
-                        <div class="group flex flex-col gap-2 cursor-pointer">
-                            <div class="relative aspect-[2/3] overflow-hidden rounded-lg border-2 border-transparent group-hover:border-white/80 group-hover:scale-105 transition-all duration-300 shadow-xl"
-                                data-alt="National Geographic documentary poster"
-                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBbEKf5kyJh-6u0XnAWDua2VEOn-sSeFTF3mg97enMMx9vnXpIJMtCQLjcodcJUApUTIRvsHgbKqz3JybiRL2AMgVOUx9Fh_0uhBytw8KJx1GtSg26SQG9ZoFL2O_s7qUYY1Ugy3dvawQw-GmqhB3243KKcHTkRuwOwYhXdhZZJmONtyd_9JpUg9ksRSZauMc2Hwlx_q3r9_b6lZXrk_hulHMm2I1W-Qj5v65xvgyYrlhnktP1oagxOFsEETxWEPW_sKwTE7AFGZOTb"); background-size: cover;'>
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                    <button
-                                        class="bg-white text-black rounded-full size-10 flex items-center justify-center">
-                                        <span class="material-symbols-outlined">play_arrow</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Poster Card 5 -->
-                        <div class="group flex flex-col gap-2 cursor-pointer">
-                            <div class="relative aspect-[2/3] overflow-hidden rounded-lg border-2 border-transparent group-hover:border-white/80 group-hover:scale-105 transition-all duration-300 shadow-xl"
-                                data-alt="Disney classic animation poster"
-                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6EFDSAu8RdPrQ9YrsjgInNvcwy_t7OIRuwWX2O2KCqRsbIL-Oso3rT9t0BeDByS3hkbqtcWj2ryRBTizXgiCycW6BbIJmtrpz5jSzamkUiXBpO2NhyljP6ypw_Kk6RCB90OhZTKMPTEUusNPuSPTMRjt5r6bTClH4BXq1rx4bRCkpPeVS2YBawC0aFTnp26oPeCVr-ithcmy6RfOtnP_foHBw8MLnfMMZihGFQGVeaoW71LWgNxWL7h5QbOLslykAYGCFQORW3tTn"); background-size: cover;'>
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                    <button
-                                        class="bg-white text-black rounded-full size-10 flex items-center justify-center">
-                                        <span class="material-symbols-outlined">play_arrow</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Poster Card 6 -->
-                        <div class="group flex flex-col gap-2 cursor-pointer">
-                            <div class="relative aspect-[2/3] overflow-hidden rounded-lg border-2 border-transparent group-hover:border-white/80 group-hover:scale-105 transition-all duration-300 shadow-xl"
-                                data-alt="Star Wars series poster artwork"
-                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCJcBjRA1G0RwWV0YvH9SvHYCF1tD4rVcRjBwnsNoyVBZHBbFHtgfw5mGGEWtYOX94qUspS9HGvQuxJwCmkNxxeYm0g-EGnNtR2te30jlJFPQiziIWcXGWMTqgndP6oYVqiWQm4GtrJ_6ayiqlV4EuBEV9wMozx-k9Ir6SQZFxsuJ3R697CwMEfi1KTAvN8nKbEsTrfSdhqUb0VNDerieNszJttteuw2QCCFVRLIbbu325-soI0C6UG2d_LD-VPj2h5aQ-FTteNNku8"); background-size: cover;'>
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                    <button
-                                        class="bg-white text-black rounded-full size-10 flex items-center justify-center">
-                                        <span class="material-symbols-outlined">play_arrow</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
-    </div>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <h1 class="site-title">Disney<span class="accent">+</span></h1>
+            <nav class="main-nav">
+                <a href="index.html">INICIO</a>
+                <a href="search.html" class="accent">BÚSQUEDA</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div style="margin: 40px 0;">
+            <input type="text" placeholder="Título, personaje o género"
+                style="width: 100%; padding: 20px; font-size: 1.5rem; background: #1a222e; border: none; color: white; border-radius: 4px; outline: none;">
+        </div>
+
+        <h2 class="section-title">Explorar</h2>
+        <section class="movie-grid">
+            <!-- Reutilizamos el grid para mostrar resultados (vacío por ahora) -->
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Trabajo de Lenguaje de Marcas - Centro San Valero</p>
+            <p>SARA MARCO · Curso: 1SI</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
