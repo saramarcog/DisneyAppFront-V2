@@ -11,7 +11,8 @@
 <body>
     <header class="site-header">
         <div class="container header-inner">
-            <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">Valero Dreams
+            <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">Valero
+                    Dreams
                     <span class="accent">+</span></a></h1>
             <nav class="main-nav">
                 <a href="index.html">INICIO</a>
@@ -21,7 +22,8 @@
                         <a href="#" class="dropdown-item">Acción</a>
                         <a href="#" class="dropdown-item">Comedia</a>
                         <a href="#" class="dropdown-item">Drama</a>
-                        <a href="#" class="dropdown-item">Ciencia Ficción</a>
+                        <a href="#" class="dropdown-item">Ciencia
+                            Ficción</a>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">Todas</a>
                     </div>
@@ -37,7 +39,8 @@
                 <div class="dropdown-menu">
                     <a href="#" class="dropdown-item">Configuración</a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item text-danger">Cerrar sesión</a>
+                    <a href="#" class="dropdown-item text-danger">Cerrar
+                        sesión</a>
                 </div>
             </div>
         </div>
@@ -46,53 +49,180 @@
     <main class="container">
         <!-- Barra de Búsqueda Estilizada -->
         <div class="search-container">
-            <input type="text" placeholder="Películas, series o cortos" class="search-input-fancy">
+            <input type="text" id="buscador-pelicula" placeholder="Películas, series o cortos"
+                class="search-input-fancy">
         </div>
 
         <!-- Sección Explorar -->
-        <span class="section-label">EXPLORAR</span>
-        <section class="category-grid">
-            <a href="#" class="category-card bg-originales">
-                <span>Originales</span>
-            </a>
-            <a href="#" class="category-card bg-peliculas">
-                <span>Películas</span>
-            </a>
-            <a href="#" class="category-card bg-series">
-                <span>Series</span>
-            </a>
+        <span class="section-label">Categorias</span>
+        <section id="category-grid" class="category-grid">
             <a href="#" class="category-card bg-accion">
                 <span>Acción</span>
             </a>
-            <a href="#" class="category-card bg-junior">
+            <a href="#" class="category-card bg-animacion">
                 <span>Animación</span>
             </a>
-            <a href="#" class="category-card bg-naturaleza">
+            <a href="#" class="category-card bg-aventura">
+                <span>Aventura</span>
+            </a>
+            <a href="#" class="category-card bg-ciencia-ficcion">
                 <span>Ciencia Ficción</span>
+            </a>
+            <a href="#" class="category-card bg-comedia">
+                <span>Comedia</span>
+            </a>
+            <a href="#" class="category-card bg-drama">
+                <span>Drama</span>
+            </a>
+            <a href="#" class="category-card bg-fantasia">
+                <span>Fantasía</span>
+            </a>
+            <a href="#" class="category-card bg-terror">
+                <span>Terror</span>
+            </a>
+            <a href="#" class="category-card bg-musical">
+                <span>Musical</span>
+            </a>
+            <a href="#" class="category-card bg-romance">
+                <span>Romance</span>
+            </a>
+            <a href="#" class="category-card bg-suspense">
+                <span>Suspense</span>
+            </a>
+            <a href="#" class="category-card bg-crimen">
+                <span>Crimen</span>
             </a>
         </section>
 
-        <h2 class="section-title">Recomendados para ti</h2>
-        <section class="carousel-container" id="recommended-carousel">
-            <button class="carousel-btn prev" onclick="scrollCarousel('recommended-track', -1)">&#10094;</button>
-            <div class="carousel-track-container">
-                <div class="carousel-track" id="recommended-track">
-                    <!-- JS inyectará películas aquí -->
-                </div>
-            </div>
-            <button class="carousel-btn next" onclick="scrollCarousel('recommended-track', 1)">&#10095;</button>
-        </section>
+        <!-- Resultados de Búsqueda -->
+        <h2 class="section-title">Resultado de búsqueda </h2>
+        <section class="search-results" id="search-results">
 
+        </section>
 
         <!-- Script simple para llenar resultados de ejemplo visualmente si está vacío -->
         <script>
+
+
+            const buscadorPelicula = document.getElementById('buscador-pelicula');
+
+
+            async function buscarPeliculas(query) {
+                if (!query || query.length < 3) {
+                    const grid = document.getElementById('search-results');
+                    if (grid) {
+                        grid.innerHTML = '';
+                    }
+                    const sectionTitle = document.querySelector('.section-title');
+                    if (sectionTitle) {
+                        sectionTitle.textContent = 'Resultado de búsqueda';
+                    }
+                    return;
+                }
+                // Mostrar Skeletons
+                const grid = document.getElementById('search-results');
+                if (grid) {
+                    grid.innerHTML = '';
+                    // Añadir 10 skeletons ficticios
+                    for (let i = 0; i < 10; i++) {
+                        grid.innerHTML += createSkeletonCard();
+                    }
+                }
+
+                try {
+                    const res = await fetch(`http://localhost:3000/api/v1/movie/search/${encodeURIComponent(query)}`);
+                    if (!res.ok) throw new Error('Error en búsqueda');
+                    const data = await res.json()
+                    console.log('Resultados de búsqueda:', data);
+                    const grid = document.getElementById('search-results');
+                    if (grid) {
+                        grid.innerHTML = '';
+                        if (data.length === 0) {
+                            grid.innerHTML = '<p class="no-results">No se encontraron resultados para tu búsqueda.</p>';
+                        } else {
+                            const sectionTitle = document.querySelector('.section-title');
+                            if (sectionTitle) {
+                                sectionTitle.textContent = `(${data.length}) Resultados para "${query}"`;
+                            }
+                            data.forEach(movie => {
+                                const card = createMovieCardResult(movie);
+                                grid.appendChild(card);
+                            });
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error al buscar:', error);
+                }
+            }
+
+            buscadorPelicula.addEventListener('input', (e) => {
+                console.log('Buscando:', e.target.value);
+                buscarPeliculas(e.target.value);
+            })
+
+            const categorias = document.querySelectorAll('.category-grid a span');
+            categorias.forEach(cat => {
+                cat.addEventListener('click', (e) => {
+                    const genre = e.target.textContent;
+                    console.log('Filtrando por género:', genre);
+                    buscarPeliculasPorCategoria(genre);
+                });
+            });
+
+            async function buscarPeliculasPorCategoria(genre) {
+                // Mostrar Skeletons
+                const grid = document.getElementById('search-results');
+                if (grid) {
+                    grid.innerHTML = '';
+                    for (let i = 0; i < 10; i++) {
+                        grid.innerHTML += createSkeletonCard();
+                    }
+                }
+
+                try {
+                    // Encode the genre to handle spaces/special chars safely
+                    const res = await fetch(`http://localhost:3000/api/v1/movie/category/${encodeURIComponent(genre)}`);
+                    if (!res.ok) {
+                        // Try to parse server error message
+                        const errData = await res.json().catch(() => ({}));
+                        throw new Error(errData.error || `Error ${res.status}: Error en búsqueda`);
+                    }
+                    const data = await res.json()
+                    console.log('Resultados de búsqueda:', data);
+                    const grid = document.getElementById('search-results');
+                    if (grid) {
+                        grid.innerHTML = '';
+                        if (data.length === 0) {
+                            grid.innerHTML = '<p class="no-results">No se encontraron resultados para tu búsqueda.</p>';
+                        } else {
+                            const sectionTitle = document.querySelector('.section-title');
+                            if (sectionTitle) {
+                                sectionTitle.textContent = `Resultados para categoría: "${genre}"`;
+                            }
+
+                            data.forEach(movie => {
+                                const card = createMovieCardResult(movie);
+                                grid.appendChild(card);
+                            });
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error al buscar:', error);
+                }
+            }
+
+            function createSkeletonCard() {
+                return `
+                <article class="movie-card">
+                    <div class="skeleton"></div>
+                </article>
+                `;
+            }
+
             document.addEventListener('DOMContentLoaded', () => {
                 const grid = document.getElementById('search-results');
                 if (grid && grid.children.length === 0) {
-                    // Si quieres que aparezcan pelis de ejemplo, descomenta o usa el script principal
                     loadAllMovies();
-                    // Nota: El script.js actual busca 'recommended-track' no 'search-results'.
-                    // Si quieres ver pelis aqui, necesitamos actualizar script.js o copiar HTML estático.
                 }
             });
         </script>
@@ -103,7 +233,8 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h2>Valero Dreams <span class="accent">+</span></h2>
-                    <p class="footer-text">Tu destino principal para el mejor entretenimiento. Disfruta de las últimas
+                    <p class="footer-text">Tu destino principal para el
+                        mejor entretenimiento. Disfruta de las últimas
                         películas y series en la mejor calidad.</p>
                     <div class="footer-social">
                         <a href="#" class="social-icon">IG</a>
@@ -143,9 +274,12 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 Centro San Valero. Todos los derechos reservados.</p>
-                <p style="font-size: 0.75rem; margin-top: 5px; opacity: 0.6;">Este sitio es un proyecto educativo sin
-                    fines de lucro. Las imágenes y marcas registradas pertenecen a sus respectivos dueños.</p>
+                <p>&copy; 2026 Centro San Valero. Todos los derechos
+                    reservados.</p>
+                <p style="font-size: 0.75rem; margin-top: 5px; opacity: 0.6;">Este
+                    sitio es un proyecto educativo sin
+                    fines de lucro. Las imágenes y marcas registradas
+                    pertenecen a sus respectivos dueños.</p>
             </div>
         </div>
     </footer>

@@ -10,6 +10,35 @@
     --text-white: #ffffff;
 }
 
+/* Skeleton Loading Animation */
+@keyframes skeleton-loading {
+    0% { background-color: #1e293b; }
+    100% { background-color: #334155; }
+}
+
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+
+.skeleton-text {
+    height: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+}
+
+/* Image Fade In */
+.img-fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.img-loaded {
+    opacity: 1;
+}
+
 body {
     margin: 0;
     font-family: 'Poppins', system-ui, Arial, sans-serif;
@@ -40,6 +69,21 @@ body {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 16px;
+}
+
+.search-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.movie-result-card {
+    width: 300px;
+    height: 350px;
+    padding: 4px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
 }
 
 /* Header - Basado en tu .site-header */
@@ -146,8 +190,6 @@ body {
     /* Mayor que el overlay (1) y la imagen (0) */
     position: relative;
 }
-
-
 
 
 .hero-title {
@@ -284,20 +326,21 @@ body {
 .movie-card {
     flex: 0 0 calc(20% - 16px);
     /* 5 pelis por fila */
-    min-width: 150px;
-    background-color: #1a222e;
+    min-width: 200px; /* Reduced from 250px to prevent crowding */
+    background-color: transparent; /* Transparent to let image show */
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: none; /* Removed border for cleaner look */
     position: relative;
+    aspect-ratio: 2/3; /* Enforce poster ratio on the card itself */
 }
 
 /* Flechas del carrusel */
 .carousel-btn {
     position: absolute;
     top: 50%;
-    border-radius: 25px;
+    border-radius: 100px;
     transform: translateY(-50%);
     background: rgba(35, 12, 56, 0.256);
     border: none;
@@ -305,12 +348,14 @@ body {
     font-size: 2rem;
     cursor: pointer;
     z-index: 10;
-    height: 15%;
+    height: 50px;
+    width: 50px;
     padding: 0 10px;
     opacity: 0;
     transition: opacity 0.3s;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .carousel-btn:hover {
@@ -349,15 +394,16 @@ body {
 
 
 /* Actualización de Tarjetas: Glassmorphism más limpio */
+/* Actualización de Tarjetas: Glassmorphism más limpio - OVERRIDE for clean look */
 .movie-card {
-    background-color: var(--navy-card);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 12px;
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 16px; /* Rounder corners like example */
     overflow: hidden;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .movie-card:hover {
@@ -387,14 +433,26 @@ body {
 
 .movie-poster {
     width: 100%;
-    aspect-ratio: 2/3;
-    /* Proporción de poster de cine */
+    height: 100%; /* Force fill */
     object-fit: cover;
     display: block;
 }
 
 .movie-info {
-    padding: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 15px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
+    opacity: 0; /* Hidden by default */
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.movie-card:hover .movie-info {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Menú de Usuario */
@@ -534,13 +592,15 @@ body {
 
 /* Responsivo - Usando tus mismos cortes de pantalla */
 @media (max-width: 900px) {
-    .movie-grid {
+    .movie-grid,
+    .search-results {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 600px) {
-    .movie-grid {
+    .movie-grid,
+    .search-results {
         grid-template-columns: 1fr;
     }
 }

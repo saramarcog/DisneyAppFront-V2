@@ -3,13 +3,14 @@ let movies = []; // Will be fetched from the backend
 
 // Backends to try (local first, then remote tunnel)
 const BACKEND_URLS = [
-    'http://localhost:3000',
-    'https://cfzqbt9r-3000.uks1.devtunnels.ms'
+    'http://localhost:3000/',
+    'http://localhost:3000/api/v1/movie'
 
 ];
+
 async function fetchMovies() {
     // Usamos localhost que es donde corre tu backend
-    const url = 'http://localhost:3000/api/movies';
+    const url = 'http://localhost:3000/api/v1/movie';
     try {
         const res = await fetch(url);
         if (!res.ok) throw new Error('Error en la respuesta del servidor');
@@ -42,10 +43,25 @@ function createMovieCard(movie) {
     article.className = 'movie-card';
     article.innerHTML = `
         <a href="details.html">
-            <img class="movie-poster" src="${movie.image}" alt="${movie.title}">
+            <img class="movie-poster img-fade-in" src="${movie.imagen_url}" alt="${movie.titulo}" loading="lazy" onload="this.classList.add('img-loaded')" onerror="this.onerror=null; this.src='https://placehold.co/200x300/101820/D4AF37?text=Sin+Imagen'; this.classList.add('img-loaded')">
             <div class="movie-info">
-                <h3 class="movie-title">${movie.title}</h3>
-                <p class="movie-category">${movie.category}</p>
+                <h3 class="movie-title">${movie.titulo}</h3>
+                <p class="movie-category">${movie.categoria}</p>
+            </div>
+        </a>
+    `;
+    return article;
+}
+
+function createMovieCardResult(movie) {
+    const article = document.createElement('article');
+    article.className = 'movie-card';
+    article.innerHTML = `
+        <a href="details.html">
+            <img class="movie-poster img-fade-in" src="${movie.imagen_url}" alt="${movie.titulo}" loading="lazy" onload="this.classList.add('img-loaded')" onerror="this.onerror=null; this.src='https://placehold.co/200x300/101820/D4AF37?text=Sin+Imagen'; this.classList.add('img-loaded')">
+            <div class="movie-info">
+                <h3 class="movie-title">${movie.titulo}</h3>
+                <p class="movie-category">${movie.categoria}</p>
             </div>
         </a>
     `;
@@ -76,7 +92,7 @@ function loadAllMovies(genre = 'all') {
 
     // Separar en Recomendados (mix) y Novedades (mas recientes o marcados)
     const recommended = movies.filter(m => filterFn(m)); // Mostramos todos en recomendados para llenar
-    const newReleases = movies.filter(m => m.type === 'new' && filterFn(m));
+    const newReleases = movies.filter(m => m.año >= 2022 && filterFn(m));
 
     loadCarousel('recommended-track', recommended);
     loadCarousel('new-track', newReleases);
@@ -132,7 +148,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function checkBackendConnection() {
     try {
-        const response = await fetch('http://localhost:3000/health');
+        const response = await fetch('http://localhost:3000/api/v1/movie');
         const data = await response.json();
         console.log('Backend conectado:', data);
     } catch (error) {
@@ -142,8 +158,7 @@ async function checkBackendConnection() {
 
 // Try to fetch /api/movies from backend(s) and populate the `movies` array
 async function fetchMovies() {
-    const urls = BACKEND_URLS.map(u => `${u}/api/movies`);
-    for (const url of urls) {
+    const url = "http://localhost:3000/api/v1/movie"
         try {
             const res = await fetch(url);
             if (!res.ok) throw new Error('Network response not ok');
@@ -160,7 +175,7 @@ async function fetchMovies() {
         } catch (e) {
             console.warn('Failed to fetch movies from', url, e);
         }
-    }
+    
     console.error('No backend reachable, leaving movies empty');
     movies = [];
 }
@@ -174,7 +189,7 @@ function initHeroSlider() {
     if (!sliderContainer) return;
 
     // Generate slides (select top 5 new / recent movies)
-    const heroMovies = movies.filter(m => m && (m.type === 'new' || (m.year && m.year >= 2022))).slice(0, 5);
+    const heroMovies = movies.filter(m => m && (m.type === 'new' || (m.año && m.año >= 2022))).slice(0, 5);
     if (heroMovies.length === 0) {
         sliderContainer.innerHTML = '<p class="no-hero">No hay elementos para el slider</p>';
     } else {
@@ -182,19 +197,19 @@ function initHeroSlider() {
             return `
                 <div class="hero-slide ${index === 0 ? 'active' : ''}" data-index="${index}">
                     <!-- Blurred Background Layer -->
-                    <div class="hero-bg-blur" style="background-image: url('${movie.image}')"></div>
+                    <div class="hero-bg-blur" style="background-image: url('${movie.imagen_url}')"></div>
                     
                     <div class="container hero-content-inner">
                         <div class="hero-text">
-                            <h2 class="hero-title">${movie.title}</h2>
-                            <span class="hero-subtitle mb-3 d-block">${movie.year} • ${movie.category}</span>
+                            <h2 class="hero-title">${movie.titulo}</h2>
+                            <span class="hero-subtitle mb-3 d-block">${movie.year} • ${movie.categoria}</span>
                             <div class="hero-buttons">
                                 <a href="details.html" class="primary-button">VER AHORA</a>
                                 <a href="#" class="secondary-button">TRÁILER</a>
                             </div>
                         </div>
                         <div class="hero-poster-container">
-                            <img src="${movie.image}" alt="${movie.title}" class="hero-floating-poster">
+                            <img src="${movie.imagen_url}" alt="${movie.titulo}" class="hero-floating-poster">
                         </div>
                     </div>
                 </div>
