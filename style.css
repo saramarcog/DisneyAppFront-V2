@@ -10,6 +10,13 @@
     --text-white: #ffffff;
 }
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Google Sans', system-ui, Arial, sans-serif;
+}
+
 /* Skeleton Loading Animation */
 @keyframes skeleton-loading {
     0% { background-color: #1e293b; }
@@ -41,13 +48,13 @@
 
 body {
     margin: 0;
-    font-family: 'Poppins', system-ui, Arial, sans-serif;
     /* Degradado Animado Navy Blue */
-    background: linear-gradient(-45deg, var(--navy-dark), var(--navy-base), #081133, var(--navy-dark));
+    background: linear-gradient(-45deg, var(--navy-dark), var(--navy-base), rgba(2, 6, 18, 0.6), var(--navy-dark));
     background-size: 400% 400%;
     animation: gradientBG 10s ease infinite;
     min-height: 100vh;
     color: var(--text-white);
+    overflow-x: hidden;
 }
 
 /*
@@ -66,7 +73,7 @@ body {
 }*/
 
 .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 16px;
 }
@@ -87,14 +94,27 @@ body {
 }
 
 /* Header - Basado en tu .site-header */
+/* Header - Transparent Gradient Overlay */
 .site-header {
-    background-color: rgba(5, 14, 36, 0.85);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
     padding: 20px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    position: relative;
+    border-bottom: none;
+    position: absolute; /* Overlay on top of content */
+    width: 100%;
+    top: 0;
+    left: 0;
     z-index: 100;
 }
+
+/* Ensure body has a consistent dark base for blending */
+body {
+    background-color: #020612; /* Fallback/Base */
+}
+
+/* Add bottom fade to hero slide to blend with body */
+/* .hero-slide::after {
+    redundant with hero-bg-blur::after
+} */
 
 .header-inner {
     display: flex;
@@ -130,15 +150,53 @@ body {
     color: var(--gold-primary);
 }
 
-.main-nav a::after {
-    content: '';
+/* Removed broken block */
+
+/* Hero Button Updates */
+.hero-btn-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(100, 116, 139, 0.4); /* Grayish transparent */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px; /* More rectangular like image */
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    backdrop-filter: blur(5px);
+    border: none;
+}
+
+.hero-btn-more:hover {
+    background-color: rgba(100, 116, 139, 0.6);
+    transform: scale(1.05);
+}
+
+/* Pagination Dots */
+.hero-dots {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background-color: var(--gold-primary);
-    transition: width 0.3s;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.hero-dot.active {
+    background-color: white;
+    transform: scale(1.2);
 }
 
 .main-nav a:hover::after {
@@ -172,6 +230,9 @@ body {
 
 /* Oscurecimiento para que el texto se lea sobre la imagen */
 /* .hero-banner::after removed to prevent covering text */
+/* Oscurecimiento para que el texto se lea sobre la imagen */
+/* Clean look: rely on hero-bg-blur gradients */
+
 
 .hero-poster {
     position: absolute;
@@ -231,7 +292,7 @@ body {
     padding: 14px 32px;
     font-size: 1rem;
     font-weight: 700;
-    border-radius: 25px;
+    border-radius: 100px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
@@ -251,7 +312,7 @@ body {
     padding: 14px 32px;
     font-size: 1rem;
     font-weight: 700;
-    border-radius: 25px;
+    border-radius: 100px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
@@ -313,7 +374,7 @@ body {
 }
 
 .carousel-track-container {
-    overflow: hidden;
+    /* overflow: hidden; */
     width: 100%;
 }
 
@@ -337,29 +398,33 @@ body {
 }
 
 /* Flechas del carrusel */
+/* Flechas del carrusel */
 .carousel-btn {
     position: absolute;
     top: 50%;
-    border-radius: 100px;
     transform: translateY(-50%);
-    background: rgba(35, 12, 56, 0.256);
+    background: transparent;
     border: none;
-    color: white;
-    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 2.5rem;
     cursor: pointer;
     z-index: 10;
-    height: 50px;
-    width: 50px;
+    height: auto;
+    width: auto;
     padding: 0 10px;
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: all 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.8);
 }
 
 .carousel-btn:hover {
-    background: rgba(212, 175, 55, 0.3);
+    color: #fff;
+    background: transparent;
+    transform: translateY(-50%) scale(1.2);
+    text-shadow: 0 0 10px rgba(255,255,255,0.6);
 }
 
 .carousel-container:hover .carousel-btn {
@@ -367,12 +432,12 @@ body {
 }
 
 .carousel-btn.prev {
-    left: 0;
+    left: -30px; /* Outside the container content if possible, or inside edge */
 }
 
 .carousel-btn.next {
-    right: 0;
-}
+    right: -30px;
+}  
 
 @media (max-width: 1100px) {
     .movie-card {
@@ -399,8 +464,8 @@ body {
     background-color: transparent;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    border-radius: 16px; /* Rounder corners like example */
     overflow: hidden;
+    border-radius: 16px; /* Rounder corners like example */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -611,6 +676,16 @@ body {
     position: relative;
 }
 
+/* Search specific */
+.search-container {
+    margin-top: 120px; /* Offset for fixed header */
+    margin-bottom: 40px;
+    position: relative;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .search-input-fancy {
     width: 100%;
     padding: 15px 15px 15px 50px;
@@ -623,7 +698,7 @@ body {
     color: white;
     outline: none;
     transition: background-color 0.3s, box-shadow 0.3s;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Google Sans', sans-serif;
 }
 
 .search-input-fancy::placeholder {
@@ -674,6 +749,24 @@ body {
     text-decoration: none;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+.category-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    fill: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    z-index: 0;
+}
+
+.category-card:hover .category-icon {
+    transform: translate(-50%, -50%) scale(1.2);
+    fill: rgba(255, 255, 255, 0.8);
+}
+
 
 .category-card:hover {
     transform: scale(1.05);
@@ -869,7 +962,6 @@ body {
 /* Blurred Background */
 .hero-bg-blur {
     position: absolute;
-    inset: -20px;
     /* Slight bleed to avoid edge issues with blur */
     background-size: cover;
     background-position: center;
@@ -987,6 +1079,38 @@ body {
     }
 }
 
+/* Hero background image */
+.hero-bg-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center top;
+    /* Removed heavy filter to letting image be "complete" */
+    /* Add vignette gradient overlay for text readability */
+    opacity: 0.8; /* Brighter image */
+}
+
+/* Vignette overlay on top of bg image for text clarity without hard edges */
+.hero-bg-blur::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradient from left (dark) to right (transparent) for text */
+    /* And from bottom (dark) to top (transparent) for blend */
+    background: radial-gradient(circle at 20% 50%, rgba(2, 6, 18, 0.8) 0%, transparent 60%),
+                linear-gradient(to top, #020612 0%, transparent 40%);
+    z-index: 1;
+}
+
+
+
+
 /* Controls */
 .hero-controls {
     position: absolute;
@@ -994,34 +1118,577 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    max-width: 1200px;
+    /* Extend to full width to place arrows at edges */
+    max-width: 100%; 
     display: flex;
     justify-content: space-between;
-    padding: 0 40px;
+    padding: 0 20px;
     z-index: 20;
     pointer-events: none;
 }
 
 .hero-btn {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 2rem;
-    padding: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    font-size: 3rem; /* Large chevron */
+    padding: 10px;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 0;
     transition: all 0.3s;
     pointer-events: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: auto;
+    height: auto;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .hero-btn:hover {
-    background-color: var(--gold-primary);
-    border-color: var(--gold-primary);
+    background-color: transparent;
+    color: #fff;
+    transform: scale(1.2);
+    text-shadow: 0 0 15px rgba(255,255,255,0.8);
+}/* Details Hero Section */
+.details-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Removed viewport breakout hack since parent is full width */
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-top: -85px; /* Pull up behind header */
+}
+
+/* Gradient Overlay - Dark on left, transparent on right */
+.details-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, 
+        #020612 0%, 
+        rgba(2, 6, 18, 0.9) 10%, 
+        rgba(2, 6, 18, 0.6) 40%, 
+        transparent 100%);
+    z-index: 1;
+}
+
+/* Gradient Bottom - Smooth transition to content */
+.details-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40vh; /* Taller gradient area */
+    /* background: linear-gradient(to top, #020612 15%, rgba(2, 6, 18, 0.8) 30%, transparent 100%); */
+    /* Blends to body bg #020612 */
+    background: linear-gradient(to top, #020612 10%, rgba(2, 6, 18, 0.95) 25%, rgba(2,6,18,0.7) 40%, transparent 100%);
+    z-index: 1;
+    pointer-events: none; /* Allow clicking through the gradient */
+}
+
+/* Cleaner Carousel Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1.2rem; /* Smaller icon */
+    cursor: pointer;
+    z-index: 10;
+    height: 40px; /* Smaller size */
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Hidden by default */
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.carousel-btn:hover {
+    background: rgba(212, 175, 55, 0.9); /* Gold hover */
     color: #000;
-    transform: scale(1.1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-container:hover .carousel-btn {
+    opacity: 1;
+}
+
+.carousel-btn.prev {
+    left: 10px; /* Inside padding */
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+.details-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px; /* Match standard container padding */
+    width: 100%;
+    padding-top: 80px; /* Offset for header */
+}
+
+.detail-logo-title {
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    background: linear-gradient(to bottom, #fff, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    max-width: 600px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.detail-badges {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.badge-white {
+    background-color: white;
+    color: black;
+}
+
+.badge-dark {
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+    backdrop-filter: blur(4px);
+}
+
+.detail-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #f1f5f9;
+    max-width: 600px;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    
+    /* Truncation logic */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.detail-description.expanded {
+    -webkit-line-clamp: unset;
+}
+
+.read-more-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 30px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s;
+}
+
+.read-more-btn:hover {
+    color: white;
+}
+
+.detail-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.btn-large {
+    padding: 16px 32px;
+    font-size: 1.1rem;
+}
+
+/* Transparent Header Override for Details Page */
+.site-header.transparent {
+    background-color: transparent;
+    border-bottom: none;
+    backdrop-filter: none;
+}
+
+/* Trailer Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    aspect-ratio: 16/9;
+    background: #000;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+    line-height: 1;
+}
+
+.modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+
+}
+
+/* Cast Section */
+.cast-section {
+    padding: 20px 5%;
+    position: relative;
+    z-index: 2;
+}
+
+.cast-scroller {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px 0 20px 0;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cast-card {
+    flex: 0 0 auto;
+    width: 140px;
+    background: #1e293b; /* Dark navy card bg */
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.cast-card:hover {
+    transform: translateY(-5px);
+    background: #28364d;
+}
+
+.cast-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background-color: #334155;
+}
+
+.cast-info {
+    padding: 10px;
+}
+
+.cast-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+
+.cast-character {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    line-height: 1.2;
+}
+
+/* Custom Scrollbar for cast */
+.cast-scroller::-webkit-scrollbar {
+    height: 8px;
+}
+.cast-scroller::-webkit-scrollbar-track {
+    background: transparent;
+}
+.cast-scroller::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+/* =========================================
+   RESPONSIVE STYLES
+   ========================================= */
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 24px;
+    }
+    
+    .carousel-btn.prev {
+        left: 0;
+    }
+    
+    .carousel-btn.next {
+        right: 0;
+    }
+    
+    .carousel-container {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header stacking */
+    .header-inner {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+    }
+
+    .site-title {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+        width: 100%;
+    }
+    
+    .user-menu {
+        position: absolute; /* Keep user menu top right or adjust */
+        top: 20px;
+        right: 20px;
+    }
+    
+    /* Make user text hidden on mobile to save space */
+    .user-name {
+        display: none;
+    }
+
+    /* Hero adjustments */
+    .hero-banner {
+        height: auto;
+        min-height: 80vh;
+        align-items: center; /* Center content vertically if stacking */
+    }
+
+    .hero-content {
+        padding-bottom: 40px;
+    }
+    
+    /* Header stacking */
+    .site-header {
+        background: rgba(2, 6, 18, 0.95); /* Solid dark bg for reliability on mobile */
+        position: relative; /* Release from absolute to avoid overlap issues */
+    }
+
+    .header-inner {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+
+    .site-title {
+        margin-right: 0;
+        margin-bottom: 0px;
+    }
+
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+        width: 100%;
+    }
+    
+    .user-menu {
+        position: absolute; /* Keep user menu top right or adjust */
+        top: 20px;
+        right: 20px;
+    }
+    
+    /* Make user text hidden on mobile to save space */
+    .user-name {
+        display: none;
+    }
+
+    /* Hero adjustments */
+    .hero-banner {
+        height: auto;
+        min-height: auto; /* Let content dictate height */
+        align-items: flex-start;
+        padding-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .hero-bg-blur {
+        position: fixed; /* Parallax-ish or just absolute covering container */
+        /* Actually, if header is relative, hero banner is below it. */
+        /* Let's make hero banner relative and background absolute to IT */
+        position: absolute;
+        height: 100%;
+    }
+    
+    /* Fix for hero being absolute previously */
+    body {
+        /* Ensure body flow works */
+    }
+
+    .hero-content {
+        padding-bottom: 40px;
+        padding-top: 20px;
+    }
+    
+    .hero-content-inner {
+        flex-direction: column; /* Poster Top, Text Bottom */
+    }
+    
+    .hero-text {
+        text-align: center;
+        margin-top: 20px;
+        z-index: 2;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    /* Hide big arrows on mobile */
+    .hero-controls {
+        display: none;
+    }
+    
+    /* Poster Mobile */
+    .hero-poster-container {
+        height: auto; /* Auto height to fit image */
+        width: 60%; /* Limit width */
+        max-width: 250px;
+        margin: 0 auto;
+        aspect-ratio: 2/3;
+        display: block;
+    }
+    
+    .hero-floating-poster {
+        transform: none !important;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    /* Movie Cards */
+    .movie-card {
+        min-width: 120px; /* Smaller cards */
+        flex: 0 0 calc(50% - 10px);
+    }
+    
+    /* Search Styling Mobile */
+    .search-container {
+        margin-top: 20px; /* Reset margin since header is relative */
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-title {
+        font-size: 1.5rem;
+    }
+    
+    .main-nav {
+        gap: 12px;
+        font-size: 0.85rem;
+    }
+    
+    /* Hide categories link on very small screens if needed, or just wrap */
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .carousel-btn {
+        display: none; /* Hide arrows on mobile, rely on swipe/scroll */
+    }
+    
+    .carousel-track {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 20px; /* Space for scrollbar if visible */
+    }
+    
+    .movie-card {
+        scroll-snap-align: start;
+        flex: 0 0 calc(45% - 10px); /* Show part of next card */
+    }
+    
+    .detail-logo-title {
+        font-size: 2.5rem;
+    }
+    
+    .details-hero {
+        margin-top: 0; /* Reset negative margin */
+        padding-top: 180px; /* Push content down */
+        height: auto;
+        min-height: 100vh;
+        align-items: flex-start;
+    }
+    
+    .details-hero-content {
+        padding-top: 0;
+    }
 }

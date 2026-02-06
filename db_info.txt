@@ -1,0 +1,86 @@
+DB INFO:
+
+ACTOR COLUMNS:
+[
+  {
+    "cid": 0,
+    "name": "id_actor",
+    "type": "INTEGER",
+    "notnull": 0,
+    "dflt_value": null,
+    "pk": 1
+  },
+  {
+    "cid": 1,
+    "name": "nombre",
+    "type": "TEXT",
+    "notnull": 1,
+    "dflt_value": null,
+    "pk": 0
+  },
+  {
+    "cid": 2,
+    "name": "foto_path",
+    "type": "TEXT",
+    "notnull": 0,
+    "dflt_value": null,
+    "pk": 0
+  }
+]
+
+PA COLUMNS:
+[
+  {
+    "cid": 0,
+    "name": "id_pelicula",
+    "type": "INTEGER",
+    "notnull": 0,
+    "dflt_value": null,
+    "pk": 1
+  },
+  {
+    "cid": 1,
+    "name": "id_actor",
+    "type": "INTEGER",
+    "notnull": 0,
+    "dflt_value": null,
+    "pk": 2
+  },
+  {
+    "cid": 2,
+    "name": "personaje",
+    "type": "TEXT",
+    "notnull": 0,
+    "dflt_value": null,
+    "pk": 0
+  }
+]
+
+ACTOR DATA:
+[
+  {
+    "id_actor": 13,
+    "nombre": "Albert Brooks",
+    "foto_path": "https://image.tmdb.org/t/p/original/8iDSGu5l93N7benjf6b3AysBore.jpg"
+  },
+  {
+    "id_actor": 63,
+    "nombre": "Milla Jovovich",
+    "foto_path": "https://image.tmdb.org/t/p/original/usWnHCzbADijULREZYSJ0qfM00y.jpg"
+  },
+  {
+    "id_actor": 103,
+    "nombre": "Mark Ruffalo",
+    "foto_path": "https://image.tmdb.org/t/p/original/5GilHMOt5PAQh6rlUKZzGmaKEI7.jpg"
+  },
+  {
+    "id_actor": 118,
+    "nombre": "Geoffrey Rush",
+    "foto_path": "https://image.tmdb.org/t/p/original/npXFjaFQzBNroCEPllGPTZ5IisA.jpg"
+  },
+  {
+    "id_actor": 204,
+    "nombre": "Kate Winslet",
+    "foto_path": "https://image.tmdb.org/t/p/original/e3tdop3WhseRnn8KwMVLAV25Ybv.jpg"
+  }
+]

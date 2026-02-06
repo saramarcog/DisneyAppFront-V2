@@ -18,10 +18,10 @@
                 <div class="nav-dropdown">
                     <span class="nav-link">CATEGORÍAS</span>
                     <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Acción</a>
-                        <a href="#" class="dropdown-item">Comedia</a>
-                        <a href="#" class="dropdown-item">Drama</a>
-                        <a href="#" class="dropdown-item">Ciencia Ficción</a>
+                        <a href="search.html?category=Acción" class="dropdown-item">Acción</a>
+                        <a href="search.html?category=Comedia" class="dropdown-item">Comedia</a>
+                        <a href="search.html?category=Drama" class="dropdown-item">Drama</a>
+                        <a href="search.html?category=Ciencia Ficción" class="dropdown-item">Ciencia Ficción</a>
                         <div class="dropdown-divider"></div>
                         <a href="search.html" class="dropdown-item">Todas</a>
                     </div>
@@ -57,36 +57,49 @@
 
         <!-- Filtros -->
         <div class="filter-bar">
-            <button class="filter-btn active" data-genre="all">Todos</button>
-            <button class="filter-btn" data-genre="Ciencia Ficción">Ciencia Ficción</button>
-            <button class="filter-btn" data-genre="Acción">Acción</button>
-            <button class="filter-btn" data-genre="Animación">Animación</button>
-            <button class="filter-btn" data-genre="Fantasía">Fantasía</button>
-            <button class="filter-btn" data-genre="Comedia">Comedia</button>
+            <!-- Buttons if needed, but request focused on carousels. Keeping generic filters but changing layout below -->
         </div>
 
-        <!-- Sección Recomendados -->
-        <h2 class="section-title">Recomendados para ti</h2>
-        <section class="carousel-container" id="recommended-carousel">
-            <button class="carousel-btn prev" onclick="scrollCarousel('recommended-track', -1)">&#10094;</button>
+        <!-- Populares -->
+        <h2 class="section-title">Populares</h2>
+        <section class="carousel-container" id="popular-carousel">
+            <button class="carousel-btn prev" onclick="scrollCarousel('popular-track', -1)">&#10094;</button>
             <div class="carousel-track-container">
-                <div class="carousel-track" id="recommended-track">
-                    <!-- JS inyectará películas aquí -->
+                <div class="carousel-track" id="popular-track">
+                    <!-- JS inject -->
                 </div>
             </div>
-            <button class="carousel-btn next" onclick="scrollCarousel('recommended-track', 1)">&#10095;</button>
+            <button class="carousel-btn next" onclick="scrollCarousel('popular-track', 1)">&#10095;</button>
         </section>
 
-        <!-- Sección Novedades -->
-        <h2 class="section-title">Novedades</h2>
-        <section class="carousel-container" id="new-carousel">
-            <button class="carousel-btn prev" onclick="scrollCarousel('new-track', -1)">&#10094;</button>
+        <!-- En Cartelera (Now Playing) -->
+        <h2 class="section-title">En Cartelera</h2>
+        <section class="carousel-container" id="now-playing-carousel">
+            <button class="carousel-btn prev" onclick="scrollCarousel('now-playing-track', -1)">&#10094;</button>
             <div class="carousel-track-container">
-                <div class="carousel-track" id="new-track">
-                    <!-- JS inyectará películas aquí -->
-                </div>
+                <div class="carousel-track" id="now-playing-track"></div>
             </div>
-            <button class="carousel-btn next" onclick="scrollCarousel('new-track', 1)">&#10095;</button>
+            <button class="carousel-btn next" onclick="scrollCarousel('now-playing-track', 1)">&#10095;</button>
+        </section>
+
+        <!-- Top Rated -->
+        <h2 class="section-title">Mejor Valoradas</h2>
+        <section class="carousel-container" id="top-rated-carousel">
+            <button class="carousel-btn prev" onclick="scrollCarousel('top-rated-track', -1)">&#10094;</button>
+            <div class="carousel-track-container">
+                <div class="carousel-track" id="top-rated-track"></div>
+            </div>
+            <button class="carousel-btn next" onclick="scrollCarousel('top-rated-track', 1)">&#10095;</button>
+        </section>
+
+        <!-- Upcoming (Próximamente) -->
+        <h2 class="section-title">Próximamente</h2>
+        <section class="carousel-container" id="upcoming-carousel">
+            <button class="carousel-btn prev" onclick="scrollCarousel('upcoming-track', -1)">&#10094;</button>
+            <div class="carousel-track-container">
+                <div class="carousel-track" id="upcoming-track"></div>
+            </div>
+            <button class="carousel-btn next" onclick="scrollCarousel('upcoming-track', 1)">&#10095;</button>
         </section>
 
     </main>
@@ -143,7 +156,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

@@ -43,39 +43,59 @@
         </div>
     </header>
 
-    <main class="container">
-        <div class="movie-details" style="padding: 40px 0; display: flex; gap: 40px; flex-wrap: wrap;">
-            <img src="https://lumiere-a.akamaihd.net/v1/images/image_ccdd5962.jpeg" alt="Poster"
-                style="width: 300px; border-radius: 12px; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
-            <div class="details-content" style="flex: 1; min-width: 300px;">
-                <h2 style="font-size: 3rem; margin-top: 0;">Avatar: El Sentido del Agua</h2>
-                <div class="meta" style="color: #ccc; margin-bottom: 20px;">
-                    <span>2022</span> • <span>3h 12m</span> • <span>Ciencia Ficción, Acción</span>
+    <main class="container-fluid" style="padding: 0;">
+        <div id="details-hero" class="details-hero">
+            <div class="details-hero-content">
+                <h1 id="detail-title" class="detail-logo-title">Cargando...</h1>
+
+                <div class="detail-badges" id="detail-meta">
+                    <!-- Meta info injected here -->
                 </div>
-                <p style="font-size: 1.1rem; line-height: 1.6; color: #e2e8f0;">
-                    Jake Sully vive con su nueva familia en el planeta Pandora. Cuando una amenaza conocida regresa,
-                    Jake debe trabajar con Neytiri y el ejército de la raza Navi para proteger su planeta.
+
+                <div class="detail-genres" id="detail-genres"
+                    style="margin-bottom: 20px; font-weight: 500; color: #cbd5e1;">
+                    <!-- Genres -->
+                </div>
+
+                <p id="detail-description" class="detail-description">
+
                 </p>
-                <div class="actions" style="margin-top: 30px;">
-                    <button class="primary-button">VER AHORA</button>
-                    <button class="primary-button"
-                        style="background: rgba(255, 255, 255, 0.778); margin-left: 10px;">TRÁILER</button>
+                <button id="read-more" class="read-more-btn" style="display: none;">MÁS INFORMACIÓN</button>
+
+                <div class="detail-actions">
+                    <button class="primary-button btn-large">VER AHORA</button>
+                    <a class="secondary-button btn-large" id="trailer-btn" href="" target="_blank">TRÁILER</a>
                 </div>
             </div>
+        </div>
+
+
+
+        <!-- Reparto -->
+        <div class="container cast-section">
+            <h2 class="section-title">Reparto Principal</h2>
+            <div class="cast-scroller" id="cast-list">
+                <!-- Cast items injected here -->
+            </div>
+        </div>
+
+        <!-- Sección Similares -->
+        <div class="container">
+            <h2 class="section-title">Similares</h2>
+            <section class="carousel-container" id="recommended-carousel">
+                <button class="carousel-btn prev" onclick="scrollCarousel('recommended-track', -1)">&#10094;</button>
+                <div class="carousel-track-container">
+                    <div class="carousel-track" id="recommended-track">
+                        <!-- JS inyectará películas aquí -->
+                    </div>
+                </div>
+                <button class="carousel-btn next" onclick="scrollCarousel('recommended-track', 1)">&#10095;</button>
+            </section>
         </div>
     </main>
 
-    <!-- Sección Similares -->
-    <h2 class="section-title">Similares</h2>
-    <section class="carousel-container" id="recommended-carousel">
-        <button class="carousel-btn prev" onclick="scrollCarousel('recommended-track', -1)">&#10094;</button>
-        <div class="carousel-track-container">
-            <div class="carousel-track" id="recommended-track">
-                <!-- JS inyectará películas aquí -->
-            </div>
-        </div>
-        <button class="carousel-btn next" onclick="scrollCarousel('recommended-track', 1)">&#10095;</button>
-    </section>
+
+
 
     <footer class="site-footer">
         <div class="container">
@@ -127,7 +147,16 @@
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <div id="trailer-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeTrailer()">&times;</button>
+            <iframe id="trailer-video" width="100%" height="100%" src="" frameborder="0"
+                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="details.js"></script>
 </body>
 
 </html>
