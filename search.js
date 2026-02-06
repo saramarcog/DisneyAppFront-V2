@@ -14,15 +14,6 @@ async function buscarPeliculas(query) {
         }
         return;
     }
-    // Mostrar Skeletons
-    const grid = document.getElementById('search-results');
-    if (grid) {
-        grid.innerHTML = '';
-        // Añadir 10 skeletons ficticios
-        for (let i = 0; i < 5; i++) {
-            grid.innerHTML += createSkeletonCard();
-        }
-    }
 
     try {
         const res = await fetch(`http://localhost:3000/api/v1/movie/search/${encodeURIComponent(query)}`);
@@ -47,7 +38,7 @@ async function buscarPeliculas(query) {
                     sectionTitle.textContent = `(${data.length}) Resultados para "${query}"`;
                 }
                 data.forEach(movie => {
-                    const card = createMovieCardResult(movie);
+                    const card = createMovieCard(movie);
                     grid.appendChild(card);
                 });
             }
@@ -103,7 +94,7 @@ async function buscarPeliculasPorCategoria(genre) {
                 }
 
                 data.forEach(movie => {
-                    const card = createMovieCardResult(movie);
+                    const card = createMovieCard(movie);
                     grid.appendChild(card);
                 });
             }
